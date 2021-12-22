@@ -1,12 +1,19 @@
 <template>
   <div
     v-if="sidebar"
-    class="bg-blueDark w-56 min-h-screen float-left sticky top-0"
+    class="bg-blueDark w-56 min-h-screen float-left sticky top-0 ease-in duration-800"
   >
     <h1 class="text-amber text-2xl font-bold text-center p-3">Pyroecom</h1>
-
-    <div class="w-12 h-12 rounded-full border-2 border-amber mt-9"></div>
-    <h1 class="text-white">Firstname</h1>
+    <div class="ml-4 mt-4">
+      <div class="w-12 h-12 ml-6">
+        <img
+          src="@/assets/images/avatar-1.jpg"
+          alt=""
+          class="rounded-full border-2 border-amber"
+        />
+      </div>
+      <h1 class="text-white ml-6 mt-2">Firstname</h1>
+    </div>
 
     <ul class="text-white text-lg mt-8 font-bold">
       <router-link to="/dashboard"

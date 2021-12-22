@@ -5,9 +5,13 @@
       <div
         class="text-white max-w-6xl w-11/12 mx-auto mt-12 md:flex flex-row-reverse gap-12"
       >
-        <div
-          class="w-1/2 h-48 mx-auto border-amber border-2 flex-grow mb-8"
-        ></div>
+        <div class="w-1/2 mx-auto flex-grow mb-8">
+          <img
+            src="@/assets/images/registration.jpg"
+            alt=""
+            class="object-cover border-amber border-2"
+          />
+        </div>
 
         <div class="md:w-3/4 text-center md:text-left">
           <h1 class="text-3xl font-bold">Register on Pyroecom, today!</h1>
@@ -38,7 +42,6 @@
           :key="benefit.title"
           class="my-10 lg:flex gap-8"
         >
-          <div class="w-24 h-24 border-2 border-amber mx-auto md:mx-0"></div>
           <div>
             <h1 class="text-2xl font-semibold my-4 lg:mt-0">
               {{ benefit.title }}

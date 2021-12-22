@@ -5,6 +5,9 @@
       <p class="text-center">
         A large warm-contact influencer network of real and willing people!
       </p>
+      <div class="image-wrapper">
+        <img src="@/assets/images/login.jpg" alt="" />
+      </div>
       <!-- <div class="mt-12">
         <div class="xl:flex justify-evenly gap-7">
           <div
@@ -89,3 +92,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.image-wrapper img {
+  mix-blend-mode: multiply;
+  max-width: 100%;
+  height: 440px;
+  max-height: 100%;
+  display: block;
+  margin: 50px auto 0;
+}
+</style>

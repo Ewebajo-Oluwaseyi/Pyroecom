@@ -1,6 +1,7 @@
 <template>
   <div class="bg-cream">
     <sidebar />
+
     <div>
       <top-nav />
       <section class="flex items-center flex-wrap bg-white shadow-sm">

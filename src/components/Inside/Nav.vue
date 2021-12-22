@@ -12,8 +12,8 @@
         ></span>
       </div>
       <div class="flex items-center gap-5 text-white text-sm px-8">
-        <h1 class="hidden md:block">December 1, 2021</h1>
-        <div class="relative cursor-pointer">
+        <h1 class="hidden md:block mr-4">December 1, 2021</h1>
+        <div class="relative cursor-pointer mr-4">
           <span
             class="iconify"
             data-icon="bi:bell-fill"
@@ -24,12 +24,12 @@
           ></div>
         </div>
         <div
-          class="w-4 h-4 rounded-full bg-white flex items-center justify-center cursor-pointer"
+          class="w-4 h-4 rounded-full bg-white flex items-center justify-center cursor-pointer mr-4"
         >
           <h1 class="text-black font-bold text-sm">?</h1>
         </div>
-        <h1 class="cursor-pointer">FAQs</h1>
-        <h1 class="cursor-pointer">Log Out</h1>
+        <h1 class="cursor-pointer mr-4">FAQs</h1>
+        <h1 class="cursor-pointer mr-4">Log Out</h1>
       </div>
     </nav>
   </div>
