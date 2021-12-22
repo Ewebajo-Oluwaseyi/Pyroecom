@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="sidebar"
-    class="bg-blueDark w-56 min-h-screen float-left sticky top-0 ease-in duration-800"
+    class="bg-blueDark w-56 min-h-screen float-left sticky top-0 transition ease-in-out duration-200"
   >
     <h1 class="text-amber text-2xl font-bold text-center p-3">Pyroecom</h1>
     <div class="ml-4 mt-4">
