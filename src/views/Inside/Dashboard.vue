@@ -2,7 +2,11 @@
   <div class="bg-cream">
     <sidebar />
 
-    <div>
+    <div
+      :class="`absolute top-0 h-full duration-1000 ease-in-out ${
+        sidebar ? 'left-56 w-10/12' : 'left-0 w-full'
+      }`"
+    >
       <top-nav />
       <section class="flex items-center flex-wrap bg-white shadow-sm">
         <Transactions class="w-80 flex-grow" />
@@ -58,6 +62,11 @@ export default {
     RecentTransactions,
     Chat,
     sidebar,
+  },
+  computed: {
+    sidebar() {
+      return this.$store.state.sidebar;
+    },
   },
 };
 </script>
