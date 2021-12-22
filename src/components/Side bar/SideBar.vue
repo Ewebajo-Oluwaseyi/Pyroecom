@@ -44,3 +44,9 @@ export default {
   },
 };
 </script>
+
+<style scope>
+.sidebar {
+  z-index: 10000;
+}
+</style>
