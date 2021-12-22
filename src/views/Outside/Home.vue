@@ -193,7 +193,7 @@
             </div>
           </div>
           <p
-            :class="` cursor-default overflow-hiddentransition-all duration-300 ${
+            :class="` cursor-default overflow-hidden transition-all duration-300 ${
               index === currentIndex ? 'h-32 py-5' : 'h-0'
             }`"
           >

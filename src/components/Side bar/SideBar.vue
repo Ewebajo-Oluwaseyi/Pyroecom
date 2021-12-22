@@ -1,8 +1,9 @@
 <template>
   <div
     v-if="sidebar"
-    class="bg-blueDark w-56 min-h-screen float-left sticky top-0 transition ease-in-out duration-200"
+    class="sidebar bg-blueDark w-56 min-h-screen float-left sticky top-0 transform transition duration-200 ease-in-out"
   >
+    <div></div>
     <h1 class="text-amber text-2xl font-bold text-center p-3">Pyroecom</h1>
     <div class="ml-4 mt-4">
       <div class="w-12 h-12 ml-6">
@@ -42,3 +43,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.transit {
+  transition: width 1s ease-in;
+}
+</style>
