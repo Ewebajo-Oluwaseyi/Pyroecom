@@ -5,7 +5,7 @@ import Login from "../views/Outside/Login.vue";
 import SignUp from "../views/Outside/SignUp.vue";
 import Registration from "../views/Outside/Registration.vue";
 import ForgotPassword from "../views/Outside/ForgotPassword.vue";
-
+import Payout from "../views/Inside/Payout.vue"
 import Dashboard from "../views/Inside/Dashboard.vue";
 import Profile from "../views/Inside/Profile.vue";
 
@@ -56,6 +56,11 @@ const routes = [
     path: "/profile",
     name: "Profile",
     component: Profile,
+  },
+  {
+    path: "/payout",
+    name: "Payout",
+    component: Payout,
   },
 ];
 
