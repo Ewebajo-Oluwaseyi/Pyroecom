@@ -41,11 +41,6 @@ export default {
     toggleSidebar() {
       this.$store.commit("toggleSidebar");
     },
-  },
-  computed: {
-    sidebar() {
-      return this.$store.state.sidebar;
-    },
-  },
+  }
 };
 </script>

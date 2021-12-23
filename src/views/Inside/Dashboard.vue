@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-cream">
+  <div class="bg-cream overflow-x-scroll">
     <sidebar />
 
     <div
@@ -70,3 +70,9 @@ export default {
   },
 };
 </script>
+
+<style scope>
+.w-lg {
+  width: 78%;
+}
+</style>

@@ -1,7 +1,11 @@
 <template>
   <div class="bg-cream">
     <sidebar />
-    <div>
+    <div
+      :class="`absolute top-0 h-full duration-1000 ease-in-out ${
+        sidebar ? 'left-56 w-10/12' : 'left-0 w-full'
+      }`"
+    >
       <top-nav />
 
       <section class="py-8 px-5 bg-white flex justify-between">
@@ -101,6 +105,11 @@ export default {
   components: {
     sidebar,
     "top-nav": Nav,
+  },
+  computed: {
+    sidebar() {
+      return this.$store.state.sidebar;
+    },
   },
 };
 </script>
