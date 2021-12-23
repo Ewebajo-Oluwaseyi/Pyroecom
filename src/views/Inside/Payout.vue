@@ -12,14 +12,23 @@
           <table class="table-auto w-full boarder-collapse">
             <thead class="bg-grey-light">
               <tr>
-                <th class="px-4 py-2 text-gray-dark">Id</th>
-                <th class="px-4 py-2 text-gray-dark">Amount</th>
-                <th class="px-4 py-2 text-gray-dark">Student</th>
-                <th class="px-4 py-2 text-gray-dark">Paid_Date</th>
+                <th class="px-2 py-2 text-gray-dark">Id</th>
+                <th class="px-2 py-2 text-gray-dark">Amount</th>
+                <th class="px-2 py-2 text-gray-dark">Student</th>
+                <th class="px-2 py-2 text-gray-dark">Paid_Date</th>
               </tr>
             </thead>
             <tbody>
-              <tr></tr>
+              <tr v-for="(table, index) in tables" :key="index">
+                <td class="border px-2 py-2 text-center">
+                  {{ parseInt(index + 1) }}
+                </td>
+                <td class="border px-2 py-2 text-center">{{ table.amount }}</td>
+                <td class="border px-2 py-2 text-center">
+                  {{ table.student }}
+                </td>
+                <td class="border px-2 py-2 text-center">{{ table.date }}</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -36,6 +45,36 @@ export default {
   components: {
     sidebar,
     "top-nav": Nav,
+  },
+  data() {
+    return {
+      tables: [
+        {
+          id: "1",
+          amount: 20,
+          student: "John",
+          date: "23/12/2021",
+        },
+        {
+          id: "2",
+          amount: 40,
+          student: "Sam",
+          date: "23/12/2021",
+        },
+        {
+          id: "1",
+          amount: 50,
+          student: "Sarah",
+          date: "23/12/2021",
+        },
+        {
+          id: "1",
+          amount: 90,
+          student: "ben",
+          date: "23/12/2021",
+        },
+      ],
+    };
   },
   computed: {
     sidebar() {
