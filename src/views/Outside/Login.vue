@@ -101,28 +101,34 @@ export default {
   methods: {
     ...mapActions(["postlogin"]),
     async Userlogin() {
-      this.loading = true;
-      try {
-        const email = this.login.email;
-        const password = this.login.password;
-        const payload = {
-          email,
-          password,
-        };
-        await this.postlogin(payload);
-        if (this.token) {
-          localStorage.setItem("jwt", this.token);
-          this.$router.push("/dashboard");
-        }
-        this.loading = false;
-      } catch (err) {
-        console.log(err);
-        if (err) {
-          this.error = "Incorrect email and password";
-          setTimeout(() => {
-            this.error = "";
-          }, 2000);
+      if (this.login.email == "") {
+        this.error = "Include email";
+      } else if (this.login.password == "") {
+        this.error = "Include password";
+      } else {
+        this.loading = true;
+        try {
+          const email = this.login.email;
+          const password = this.login.password;
+          const payload = {
+            email,
+            password,
+          };
+          await this.postlogin(payload);
+          if (this.token) {
+            localStorage.setItem("jwt", this.token);
+            this.$router.push("/dashboard");
+          }
           this.loading = false;
+        } catch (err) {
+          console.log(err);
+          if (err) {
+            this.error = "Incorrect email and password";
+            setTimeout(() => {
+              this.error = "";
+            }, 2000);
+            this.loading = false;
+          }
         }
       }
     },
