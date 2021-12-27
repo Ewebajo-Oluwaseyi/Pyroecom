@@ -48,26 +48,26 @@
           <input
             type="email"
             placeholder="Enter your email address"
-            v-model="email"
+            v-model="login.email"
             class="w-full my-5 bg-transparent focus:outline-none px-1 py-4 border-b border-opacity-75"
           />
           <br />
           <input
             type="password"
             placeholder="Enter your password"
-            v-model="password"
+            v-model="login.password"
             class="w-full my-5 bg-transparent focus:outline-none px-1 py-4 border-b border-opacity-75"
           />
 
           <button
-            @click.prevent="login"
+            @click.prevent="Userlogin"
             type="submit"
             class="w-full my-6 bg-amber uppercase text-black font-bold rounded-lg py-2.5"
           >
-            Login
+            {{ loading ? "loading..." : "Login" }}
           </button>
         </form>
-
+        <p class="text-center text-red-500">{{ error }}</p>
         <p class="text-center my-8">
           Don't have an account?
           <router-link to="/register" class="text-amber">Register</router-link>
@@ -81,13 +81,50 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
-    return {};
+    return {
+      loading: false,
+      login: {
+        email: "",
+        password: "",
+      },
+      error: "",
+    };
+  },
+  computed: {
+    ...mapGetters({
+      token: "getToken",
+    }),
   },
   methods: {
-    login() {
-      this.$router.push("/dashboard");
+    ...mapActions(["postlogin"]),
+    async Userlogin() {
+      this.loading = true;
+      try {
+        const email = this.login.email;
+        const password = this.login.password;
+        const payload = {
+          email,
+          password,
+        };
+        await this.postlogin(payload);
+        if (this.token) {
+          localStorage.setItem("jwt", this.token);
+          this.$router.push("/dashboard");
+        }
+        this.loading = false;
+      } catch (err) {
+        console.log(err);
+        if (err) {
+          this.error = "Incorrect email and password";
+          setTimeout(() => {
+            this.error = "";
+          }, 2000);
+          this.loading = false;
+        }
+      }
     },
   },
 };
