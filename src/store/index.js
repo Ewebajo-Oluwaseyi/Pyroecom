@@ -13,6 +13,7 @@ export default new Vuex.Store({
     bio: "",
     address: "",
     moreInfo: "",
+    profile: [],
     next: false
   },
   mutations: {
@@ -34,6 +35,9 @@ export default new Vuex.Store({
     moreInfo: (state, payload) => {
       state.moreInfo = payload;
     },
+    profile: (state, payload) => {
+      state.profile = payload
+    },
     enableNext: (state, payload) => {
       state.next = payload;
     }
@@ -41,7 +45,7 @@ export default new Vuex.Store({
   actions: {
     async postlogin({commit}, payload) {
       await icyecomServices.login(payload).then(response => {
-        console.log(response.data.access_token)
+       // console.log(response.data.access_token)
         commit("token", response.data.access_token);
         if(response.data.access_token) {
           localStorage.setItem("jwt", response.data.access_token);
@@ -50,7 +54,6 @@ export default new Vuex.Store({
       })
     },
     async postRegister({dispatch, getters}) {
-      console.log(getters.loginInfo)
       const {firstname, lastname, email, password, password_confirmation} = getters.loginInfo;
       const {bio} = getters.bio
       const {address_1, phone, city, country} = getters.address;
@@ -62,6 +65,12 @@ export default new Vuex.Store({
         }
       })
     },
+    async getProfile({commit}) {
+      const token = localStorage.getItem("jwt");
+      await icyecomServices.profile({headers: {"Authorization": `Bearer ${token}`}}).then(response => {
+        commit("profile", response.data)
+      })
+    }
   },
   getters: {
     getToken(state) {
@@ -81,6 +90,9 @@ export default new Vuex.Store({
     },
     moreInfo(state) {
       return state.moreInfo
+    }, 
+    profile(state) {
+      return state.profile
     }
   },
   modules: {},

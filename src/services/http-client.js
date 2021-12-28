@@ -7,6 +7,9 @@ class icyecomServices {
     register(data) {
         return axios.post("/sign-up", data)
     }
+    profile(data) {
+        return axios.get("/me", data)
+    }
 }
 
 export default new icyecomServices();
