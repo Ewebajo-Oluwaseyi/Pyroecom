@@ -27,43 +27,30 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 import LoginInfo from "./Login Forms/LoginInfo.vue";
-import ProfilePicture from "./Login Forms/ProfilePicture.vue";
-import Interest from "./Login Forms/Interest.vue";
+//import ProfilePicture from "./Login Forms/ProfilePicture.vue";
+//import Interest from "./Login Forms/Interest.vue";
 import Bio from "./Login Forms/Bio.vue";
-import AdditionalPhotos from "./Login Forms/AdditionalPhotos.vue";
+//import AdditionalPhotos from "./Login Forms/AdditionalPhotos.vue";
 import Address from "./Login Forms/Address.vue";
-import SocialMedia from "./Login Forms/SocialMedia.vue";
-import Compensation from "./Login Forms/Compensation.vue";
+//import SocialMedia from "./Login Forms/SocialMedia.vue";
+//import Compensation from "./Login Forms/Compensation.vue";
 import OtherInfo from "./Login Forms/OtherInfo.vue";
 export default {
   data() {
     return {
+      loading: false,
       currentPage: 0,
       pages: [
         {
           component: LoginInfo,
         },
         {
-          component: ProfilePicture,
-        },
-        {
-          component: Interest,
-        },
-        {
           component: Bio,
         },
         {
-          component: AdditionalPhotos,
-        },
-        {
           component: Address,
-        },
-        {
-          component: SocialMedia,
-        },
-        {
-          component: Compensation,
         },
         {
           component: OtherInfo,
@@ -71,15 +58,28 @@ export default {
       ],
     };
   },
+  computed: {
+    ...mapGetters({
+      enableNext: "next",
+    }),
+  },
   methods: {
+    ...mapActions(["postRegister"]),
     previous() {
       this.currentPage--;
     },
     next() {
-      this.currentPage++;
+      console.log(this.enableNext);
+      if (this.enableNext) {
+        this.currentPage++;
+      }
+      this.$root.$emit("Next");
     },
     submit() {
-      this.$router.push("/dashboard");
+      this.loading = true;
+      this.$root.$emit("Submit");
+      this.postRegister();
+      this.loading = false;
     },
   },
 };

@@ -16,6 +16,7 @@
             <input
               type="text"
               id="address"
+              v-model="address.address1"
               placeholder="Address"
               class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
             />
@@ -26,6 +27,7 @@
             <input
               type="text"
               id="address 2"
+              v-model="address.address2"
               placeholder="Address line 2"
               class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
             />
@@ -37,6 +39,7 @@
             <input
               type="text"
               id="country"
+              v-model="address.country"
               placeholder=""
               class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
             />
@@ -48,6 +51,7 @@
               type="text"
               id="state"
               placeholder="State"
+              v-model="address.state"
               class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
             />
           </div>
@@ -58,6 +62,7 @@
               type="text"
               id="city"
               placeholder="City"
+              v-model="address.city"
               class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
             />
           </div>
@@ -68,6 +73,7 @@
             <input
               type="tel"
               id="telephone"
+              v-model="address.phone"
               placeholder="Phone number"
               class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
             />
@@ -75,9 +81,60 @@
         </form>
       </div>
     </div>
+    <p class="text-center text-red-500">{{ error }}</p>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      address: {
+        address1: "",
+        address2: "",
+        country: "",
+        state: "",
+        city: "",
+        phone: "",
+      },
+      error: "",
+    };
+  },
+  methods: {
+    submit() {
+      if (
+        this.address.address1 === "" ||
+        this.address.country === "" ||
+        this.address.state === "" ||
+        this.address.city === "" ||
+        this.address.phone === ""
+      ) {
+        this.error = "Include Address";
+        console.log(this.error);
+        setTimeout(() => {
+          this.error = "";
+        }, 2000);
+        this.$store.commit("enableNext", false);
+      } else {
+        this.$store.commit("enableNext", true);
+        const address1 = this.address.address1;
+        const country = this.address.country;
+        const city = this.address.city;
+        const phone = this.address.phone;
+        const payload = {
+          address_1: address1,
+          phone: phone,
+          city: city,
+          country: country,
+        };
+        this.$store.commit("address", payload);
+      }
+    },
+  },
+  mounted: function mounted() {
+    this.$root.$on("Next", () => {
+      this.submit();
+    });
+  },
+};
 </script>

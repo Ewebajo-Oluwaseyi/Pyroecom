@@ -13,11 +13,21 @@
             <label for="gender"
               >Gender <span class="text-red-600">*</span></label
             ><br />
-            <input
+            <select
               type="text"
               id="gender"
+              v-model="data.gender"
               class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
-            />
+            >
+              <option disables :value="null">Select a gender</option>
+              <option
+                v-for="(gender, index) in genders"
+                :key="index"
+                :value="gender.gender"
+              >
+                {{ gender.gender }}
+              </option>
+            </select>
           </div>
 
           <div class="flex-grow">
@@ -25,6 +35,7 @@
             <input
               type="date"
               id="birthday"
+              v-model="data.birthday"
               class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
             />
           </div>
@@ -34,14 +45,16 @@
             ><br />
             <input
               type="text"
-              id="country"
+              id="languages"
+              v-model="data.languages1"
               placeholder="Select Language"
               class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
             />
 
             <input
               type="text"
-              id="state"
+              id="languages"
+              v-model="data.languages2"
               placeholder="Select Fluency"
               class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
             />
@@ -49,9 +62,66 @@
         </form>
       </div>
     </div>
+    <p class="text-center text-red-500">{{ error }}</p>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      data: {
+        gender: "",
+        birthday: "",
+        languages1: "",
+        languages2: "",
+      },
+      genders: [
+        {
+          id: 1,
+          gender: "MALE",
+        },
+        {
+          id: 2,
+          gender: "FEMALE",
+        },
+      ],
+      error: "",
+    };
+  },
+  methods: {
+    submit() {
+      if (
+        this.data.gender === "" ||
+        this.data.birthday === "" ||
+        this.data.languages1 === "" ||
+        this.data.languages2 === ""
+      ) {
+        this.error = "Include Information";
+        setTimeout(() => {
+          this.error = "";
+        }, 2000);
+        this.$store.commit("enableNext", false);
+      } else {
+        this.$store.commit("enableNext", true);
+        const gender = this.data.gender;
+        const languages = [this.data.languages1, this.data.languages2];
+        const Arrlanguages = Object.values(languages);
+
+        const payload = {
+          gender: gender,
+          twitter_link: "https://twitter.com",
+          instagram_link: "https://instagram.com",
+          languages: Arrlanguages,
+        };
+        this.$store.commit("moreInfo", payload);
+      }
+    },
+  },
+  mounted: function mounted() {
+    this.$root.$on("Submit", () => {
+      this.submit();
+    });
+  },
+};
 </script>

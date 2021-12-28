@@ -59,13 +59,15 @@
           <h1 class="text-black font-bold text-sm">?</h1>
         </div>
         <h1 class="cursor-pointer mr-4">FAQs</h1>
-        <h1 class="cursor-pointer mr-4">Log Out</h1>
+        <h1 class="cursor-pointer mr-4" @click="logOut">Log Out</h1>
       </div>
     </nav>
   </div>
 </template>
 
 <script>
+import auth from "../../utils/auth";
+
 export default {
   data() {
     return {
@@ -98,6 +100,9 @@ export default {
   methods: {
     toggleSidebar() {
       this.$store.commit("toggleSidebar");
+    },
+    logOut() {
+      auth.logoutUser();
     },
   },
 };

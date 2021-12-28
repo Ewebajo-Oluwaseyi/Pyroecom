@@ -81,7 +81,8 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -93,18 +94,21 @@ export default {
       error: "",
     };
   },
-  computed: {
-    ...mapGetters({
-      token: "getToken",
-    }),
-  },
   methods: {
     ...mapActions(["postlogin"]),
     async Userlogin() {
       if (this.login.email == "") {
         this.error = "Include email";
+        setTimeout(() => {
+          this.error = "";
+        }, 2000);
+        this.loading = false;
       } else if (this.login.password == "") {
         this.error = "Include password";
+        setTimeout(() => {
+          this.error = "";
+        }, 2000);
+        this.loading = false;
       } else {
         this.loading = true;
         try {
@@ -115,13 +119,8 @@ export default {
             password,
           };
           await this.postlogin(payload);
-          if (this.token) {
-            localStorage.setItem("jwt", this.token);
-            this.$router.push("/dashboard");
-          }
           this.loading = false;
         } catch (err) {
-          console.log(err);
           if (err) {
             this.error = "Incorrect email and password";
             setTimeout(() => {

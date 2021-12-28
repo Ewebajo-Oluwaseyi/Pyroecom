@@ -14,15 +14,44 @@
           </div>
         </div>
         <textarea
-          id=""
+          id="bio"
           placeholder="Tell us about yourself"
+          v-model="bio"
           class="bg-cream focus:outline-none shadow-sm py-3 px-2 mt-8 w-full"
         ></textarea>
       </div>
     </div>
+    <p class="text-center text-red-500">{{ error }}</p>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      bio: "",
+      error: "",
+    };
+  },
+  methods: {
+    submit() {
+      if (this.bio == "") {
+        this.error = "Bio field is required";
+        console.log(this.error);
+        setTimeout(() => {
+          this.error = "";
+        }, 2000);
+        this.$store.commit("enableNext", false);
+      } else {
+        this.$store.commit("enableNext", true);
+        this.$store.commit("bio", { bio: this.bio });
+      }
+    },
+  },
+  mounted: function mounted() {
+    this.$root.$on("Next", () => {
+      this.submit();
+    });
+  },
+};
 </script>

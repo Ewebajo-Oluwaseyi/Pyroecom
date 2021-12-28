@@ -2,11 +2,10 @@ import axios from './axiosConfig';
 
 class icyecomServices {
     login(data) {
-        console.log(data)
         return axios.post("/login", data);
     }
-    register() {
-        return axios.post("/register")
+    register(data) {
+        return axios.post("/sign-up", data)
     }
 }
 
