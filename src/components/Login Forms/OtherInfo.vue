@@ -101,13 +101,13 @@ export default {
   methods: {
     submit() {
       if (this.data.gender === "") {
-        this.error.gender = "Include gender";
+        this.error.gender = "Gender is required";
         setTimeout(() => {
           this.error.gender = "";
         }, 1000);
         this.$store.commit("enableNext", false);
       } else if (this.data.languages1 === "" || this.data.languages2 === "") {
-        this.error.languages = "Include languages";
+        this.error.languages = "Languages is required";
         setTimeout(() => {
           this.error.languages = "";
         }, 1000);

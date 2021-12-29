@@ -123,13 +123,13 @@ export default {
     ...mapActions(["postlogin"]),
     async Userlogin() {
       if (this.login.email == "") {
-        this.error.email = "Include email";
+        this.error.email = "email is required";
         setTimeout(() => {
           this.error.email = "";
         }, 1000);
         this.loading = false;
       } else if (this.login.password == "") {
-        this.error.password = "Include password";
+        this.error.password = "password is required";
         setTimeout(() => {
           this.error.password = "";
         }, 1000);

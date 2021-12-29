@@ -134,25 +134,25 @@ export default {
   methods: {
     submit() {
       if (this.address.address1 === "") {
-        this.error.address1 = "Include Address";
+        this.error.address1 = "Address is required";
         setTimeout(() => {
           this.error.address1 = "";
         }, 1000);
         this.$store.commit("enableNext", false);
       } else if (this.address.country === "") {
-        this.error.country = "Include country";
+        this.error.country = "Country is required";
         setTimeout(() => {
           this.error.country = "";
         }, 1000);
         this.$store.commit("enableNext", false);
       } else if (this.address.city === "") {
-        this.error.city = "Include city";
+        this.error.city = "City is required";
         setTimeout(() => {
           this.error.city = "";
         }, 1000);
         this.$store.commit("enableNext", false);
       } else if (this.address.phone === "") {
-        this.error.phone = "Include phone number";
+        this.error.phone = "Phone number is required";
         setTimeout(() => {
           this.error.phone = "";
         }, 1000);

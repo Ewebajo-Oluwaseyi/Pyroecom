@@ -145,28 +145,28 @@ export default {
   methods: {
     submit() {
       if (this.register.firstName === "") {
-        this.error.firstName = "Include firstname";
+        this.error.firstName = "firstname is required";
         setTimeout(() => {
           this.error.firstName = "";
         }, 1000);
         this.loading = false;
         this.$store.commit("enableNext", false);
       } else if (this.register.lastName === "") {
-        this.error.lastName = "Include last name";
+        this.error.lastName = "last name is required";
         setTimeout(() => {
           this.error.lastName = "";
         }, 1000);
         this.loading = false;
         this.$store.commit("enableNext", false);
       } else if (this.register.email === "") {
-        this.error.email = "Include email";
+        this.error.email = "email is required";
         setTimeout(() => {
           this.error.email = "";
         }, 1000);
         this.loading = false;
         this.$store.commit("enableNext", false);
       } else if (this.register.password === "") {
-        this.error.password = "Include password";
+        this.error.password = "password is required";
         setTimeout(() => {
           this.error.password = "";
         }, 1000);
@@ -184,7 +184,7 @@ export default {
         this.loading = false;
         this.$store.commit("enableNext", false);
       } else if (this.register.confirmPassword === "") {
-        this.error.confirmPassword = "Include password";
+        this.error.confirmPassword = "password is required";
         setTimeout(() => {
           this.error.confirmPassword = "";
         }, 1000);
