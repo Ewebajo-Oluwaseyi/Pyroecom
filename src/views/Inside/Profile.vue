@@ -55,33 +55,33 @@
               </div>
             </div>
             <div>
-              <div class="my-1">
+              <div class="my-2 flex items-center">
                 <h1>Email:</h1>
-                <p>{{ profile.email }}</p>
+                <p class="ml-4">{{ profile.email }}</p>
               </div>
-              <div class="my-1">
+              <div class="my-2 flex items-center">
                 <h1>Address 1:</h1>
-                <p>
+                <p class="ml-4">
                   {{ profile.address_1 }}
                 </p>
               </div>
-              <div class="my-1">
+              <div class="my-2 flex items-center">
                 <h1>Address 2:</h1>
-                <p>
+                <p class="ml-4">
                   {{ profile.address_2 }}
                 </p>
               </div>
-              <div class="my-1">
+              <div class="my-2 flex items-center">
                 <h1>City:</h1>
-                <p>{{ profile.city }}</p>
+                <p class="ml-4">{{ profile.city }}</p>
               </div>
-              <div class="my-1">
+              <div class="my-2 flex items-center">
                 <h1>State:</h1>
-                <p>{{ profile.state }}</p>
+                <p class="ml-4">{{ profile.state }}</p>
               </div>
-              <div class="my-1">
+              <div class="my-2 flex items-center">
                 <h1>Country:</h1>
-                <p>{{ profile.country }}</p>
+                <p class="ml-4">{{ profile.country }}</p>
               </div>
             </div>
           </div>
