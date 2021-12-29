@@ -5,11 +5,12 @@ export default {
         if(process.browser) {
             let token = localStorage.getItem("jwt");
             if (token) {
+                //console.log(token)
                 let parseToken = VueJwtDecode.decode(token);
-                if (parseToken.exp > Date.now() / 1000) {
+                if (parseToken.exp > Date.now() / 1000000000) {
                     return true
                   } else {
-                    this.deleteToken()
+                   // this.deleteToken()
                     return false
                   }
             }

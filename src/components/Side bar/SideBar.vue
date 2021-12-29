@@ -18,7 +18,7 @@
     </div>
 
     <ul class="text-white text-lg mt-8 font-bold">
-      <router-link to="/dashboard"
+      <router-link to="/"
         ><li class="px-4 py-4 hover:bg-blue-300 duration-150 cursor-pointer">
           Dashboard
         </li></router-link

@@ -13,7 +13,7 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/home",
     name: "Home",
     component: Home,
     meta: {
@@ -63,7 +63,7 @@ const routes = [
   },
 
   {
-    path: "/dashboard",
+    path: "/",
     name: "Dashboard",
     component: Dashboard,
     meta: {
@@ -99,7 +99,7 @@ router.beforeEach((to, from, next) => {
     if (auth.userIsLogged()) {
       next();
     } else {
-      next("/");
+      next("/home");
     }
   } else {
     next();

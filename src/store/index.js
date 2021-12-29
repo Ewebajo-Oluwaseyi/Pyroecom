@@ -52,7 +52,7 @@ export default new Vuex.Store({
         commit("token", response.data.access_token);
         if(response.data.access_token) {
           localStorage.setItem("jwt", response.data.access_token);
-          router.push("/dashboard")
+          router.push("/")
         }
       })
     },
