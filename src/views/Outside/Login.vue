@@ -78,7 +78,10 @@
             type="submit"
             class="w-full my-6 bg-amber uppercase text-black font-bold rounded-lg py-2.5"
           >
-            {{ loading ? "loading..." : "Login" }}
+            <div class="Loading" v-if="loading">
+              <Spinner />
+            </div>
+            <div v-else>Login</div>
           </button>
         </form>
         <p class="text-center text-red-500">{{ error.error }}</p>
@@ -96,8 +99,12 @@
 
 <script>
 import { mapActions } from "vuex";
+import Spinner from "@/components/Spinner";
 
 export default {
+  components: {
+    Spinner,
+  },
   data() {
     return {
       loading: false,
@@ -161,5 +168,10 @@ export default {
   max-height: 100%;
   display: block;
   margin: 50px auto 0;
+}
+.Loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

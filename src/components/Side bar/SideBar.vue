@@ -14,7 +14,7 @@
           class="rounded-full border-2 border-amber"
         />
       </div>
-      <h1 class="text-white ml-6 mt-2">Firstname</h1>
+      <h1 class="text-white ml-6 mt-2">{{ profile.firstname }}</h1>
     </div>
 
     <ul class="text-white text-lg mt-8 font-bold">
@@ -38,11 +38,23 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   computed: {
     sidebar() {
       return this.$store.state.sidebar;
     },
+    ...mapGetters({
+      profile: "profile",
+    }),
+  },
+  methods: {
+    ...mapActions({
+      getProfile: "getProfile",
+    }),
+  },
+  async created() {
+    await this.getProfile();
   },
 };
 </script>

@@ -49,7 +49,6 @@ export default new Vuex.Store({
   actions: {
     async postlogin({commit}, payload) {
       await icyecomServices.login(payload).then(response => {
-        console.log(response)
         commit("token", response.data.access_token);
         if(response.data.access_token) {
           localStorage.setItem("jwt", response.data.access_token);

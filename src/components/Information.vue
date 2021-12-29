@@ -19,7 +19,10 @@
           @click="submit"
           class="bg-amber w-28 py-3 text-white rounded-sm focus:outline-none"
         >
-          {{ loading ? "loading..." : "Submit" }}
+          <div class="Loading" v-if="loading">
+            <Spinner />
+          </div>
+          <div v-else>Login</div>
         </button>
         <p class="text-center text-red-500 text-sm">
           {{ error }}
@@ -40,7 +43,11 @@ import Address from "./Login Forms/Address.vue";
 //import SocialMedia from "./Login Forms/SocialMedia.vue";
 //import Compensation from "./Login Forms/Compensation.vue";
 import OtherInfo from "./Login Forms/OtherInfo.vue";
+import Spinner from "@/components/Spinner";
 export default {
+  components: {
+    Spinner,
+  },
   data() {
     return {
       loading: false,
@@ -84,11 +91,21 @@ export default {
       this.loading = true;
       this.$root.$emit("Submit");
       this.postRegister();
-      this.loading = false;
       if (this.getError) {
         this.error = this.getError;
       }
+      setTimeout(() => {
+        this.loading = false;
+      }, 2000);
     },
   },
 };
 </script>
+
+<style scoped>
+.Loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
