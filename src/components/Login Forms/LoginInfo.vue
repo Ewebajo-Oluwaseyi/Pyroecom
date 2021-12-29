@@ -18,8 +18,15 @@
               id="firstName"
               v-model="register.firstName"
               placeholder="Enter your first name"
-              class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
+              v-bind:class="
+                error.firstName
+                  ? 'ring ring-red-500 bg-cream shadow-sm py-2 px-2 mt-2 w-full'
+                  : 'bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full'
+              "
             />
+            <p class="text-center text-red-500 text-xs mt-2">
+              {{ error.firstName }}
+            </p>
           </div>
           <div class="flex-grow">
             <label for="lastname"
@@ -30,8 +37,15 @@
               id="lastName"
               v-model="register.lastName"
               placeholder="Enter your last name"
-              class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
+              v-bind:class="
+                error.lastName
+                  ? 'ring ring-red-500 bg-cream shadow-sm py-2 px-2 mt-2 w-full'
+                  : 'bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full'
+              "
             />
+            <p class="text-center text-red-500 text-xs mt-2">
+              {{ error.lastName }}
+            </p>
           </div>
           <div class="flex-grow">
             <label for="email">Email <span class="text-red-600">*</span></label
@@ -41,8 +55,15 @@
               id="email"
               v-model="register.email"
               placeholder="Enter your email"
-              class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
+              v-bind:class="
+                error.email
+                  ? 'ring ring-red-500 bg-cream shadow-sm py-2 px-2 mt-2 w-full'
+                  : 'bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full'
+              "
             />
+            <p class="text-center text-red-500 text-xs mt-2">
+              {{ error.email }}
+            </p>
           </div>
           <div class="flex-grow">
             <label for="password"
@@ -53,8 +74,15 @@
               id="password"
               v-model="register.password"
               placeholder="Enter a password"
-              class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
+              v-bind:class="
+                error.password
+                  ? 'ring ring-red-500 bg-cream shadow-sm py-2 px-2 mt-2 w-full'
+                  : 'bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full'
+              "
             />
+            <p class="text-center text-red-500 text-xs mt-2">
+              {{ error.password }}
+            </p>
           </div>
           <div class="flex-grow">
             <label for="confirmpassword">
@@ -65,8 +93,15 @@
               id="confirmPassword"
               v-model="register.confirmPassword"
               placeholder="Confirm password"
-              class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
+              v-bind:class="
+                error.confirmPassword
+                  ? 'ring ring-red-500 bg-cream shadow-sm py-2 px-2 mt-2 w-full'
+                  : 'bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full'
+              "
             />
+            <p class="text-center text-red-500 text-xs mt-2">
+              {{ error.confirmPassword }}
+            </p>
           </div>
           <div class="flex items-center">
             <input type="checkbox" id="checkbox" />
@@ -77,11 +112,11 @@
         </form>
       </div>
     </div>
-    <p class="text-center text-red-500">{{ error }}</p>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -93,40 +128,83 @@ export default {
         password: "",
         confirmPassword: "",
       },
-      error: "",
+      error: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      },
     };
+  },
+  computed: {
+    ...mapGetters({
+      loginInfo: "loginInfo",
+    }),
   },
   methods: {
     submit() {
-      if (
-        this.register.firstName === "" ||
-        this.register.lastName === "" ||
-        this.register.email === "" ||
-        this.register.password === "" ||
-        this.register.confirmPassword === ""
-      ) {
-        this.error = "Include credentials";
+      if (this.register.firstName === "") {
+        this.error.firstName = "Include firstname";
         setTimeout(() => {
-          this.error = "";
-        }, 2000);
+          this.error.firstName = "";
+        }, 1000);
         this.loading = false;
         this.$store.commit("enableNext", false);
-      } else if (this.register.password !== this.register.confirmPassword) {
-        this.error = "Password does not match";
+      } else if (this.register.lastName === "") {
+        this.error.lastName = "Include last name";
         setTimeout(() => {
-          this.error = "";
-        }, 2000);
+          this.error.lastName = "";
+        }, 1000);
+        this.loading = false;
+        this.$store.commit("enableNext", false);
+      } else if (this.register.email === "") {
+        this.error.email = "Include email";
+        setTimeout(() => {
+          this.error.email = "";
+        }, 1000);
+        this.loading = false;
+        this.$store.commit("enableNext", false);
+      } else if (this.register.password === "") {
+        this.error.password = "Include password";
+        setTimeout(() => {
+          this.error.password = "";
+        }, 1000);
         this.loading = false;
         this.$store.commit("enableNext", false);
       } else if (
         this.register.password.length <= 6 ||
-        (this.register.confirmPassword.length <= 6 &&
-          this.register.password.length > 19) ||
+        this.register.password.length > 19
+      ) {
+        this.error.password =
+          "The password must be between 7 and 20 characters.";
+        setTimeout(() => {
+          this.error.password = "";
+        }, 2000);
+        this.loading = false;
+        this.$store.commit("enableNext", false);
+      } else if (this.register.confirmPassword === "") {
+        this.error.confirmPassword = "Include password";
+        setTimeout(() => {
+          this.error.confirmPassword = "";
+        }, 1000);
+        this.loading = false;
+        this.$store.commit("enableNext", false);
+      } else if (this.register.password !== this.register.confirmPassword) {
+        this.error.confirmPassword = "Password does not match";
+        setTimeout(() => {
+          this.error.confirmPassword = "";
+        }, 2000);
+        this.loading = false;
+        this.$store.commit("enableNext", false);
+      } else if (
+        this.register.confirmPassword.length <= 6 ||
         this.register.confirmPassword.length > 19
       ) {
-        this.error = "The password must be between 7 and 20 characters.";
+        this.error.confirmPassword =
+          "The password must be between 7 and 20 characters.";
         setTimeout(() => {
-          this.error = "";
+          this.error.confirmPassword = "";
         }, 2000);
         this.loading = false;
         this.$store.commit("enableNext", false);
@@ -148,10 +226,23 @@ export default {
         this.$store.commit("loginInfo", payload);
       }
     },
+    Prev() {
+      console.log(this.loginInfo);
+      this.register = {
+        firstName: this.loginInfo.firstname,
+        lastName: this.loginInfo.lastname,
+        email: this.loginInfo.email,
+        password: this.loginInfo.password,
+        confirmPassword: this.loginInfo.password_confirmation,
+      };
+    },
   },
   mounted: function mounted() {
     this.$root.$on("Next", () => {
       this.submit();
+    });
+    this.$root.$on("Previous", () => {
+      this.Prev();
     });
   },
 };

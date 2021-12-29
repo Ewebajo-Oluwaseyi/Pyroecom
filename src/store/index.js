@@ -14,7 +14,8 @@ export default new Vuex.Store({
     address: "",
     moreInfo: "",
     profile: [],
-    next: false
+    next: false,
+    error: ""
   },
   mutations: {
     toggleSidebar: (state) => {
@@ -40,12 +41,15 @@ export default new Vuex.Store({
     },
     enableNext: (state, payload) => {
       state.next = payload;
+    },
+    error: (state, payload) =>{
+      state.error = payload;
     }
   },
   actions: {
     async postlogin({commit}, payload) {
       await icyecomServices.login(payload).then(response => {
-       // console.log(response.data.access_token)
+        console.log(response)
         commit("token", response.data.access_token);
         if(response.data.access_token) {
           localStorage.setItem("jwt", response.data.access_token);
@@ -53,15 +57,17 @@ export default new Vuex.Store({
         }
       })
     },
-    async postRegister({dispatch, getters}) {
+    async postRegister({dispatch, getters, commit}) {
       const {firstname, lastname, email, password, password_confirmation} = getters.loginInfo;
       const {bio} = getters.bio
       const {address_1, phone, city, country} = getters.address;
       const {gender, twitter_link, instagram_link, languages} = getters.moreInfo;
       await icyecomServices.register({firstname, lastname, email, password, password_confirmation, bio, address_1, phone, city, country, gender, twitter_link, instagram_link, languages}).then(response => {
-        
-        if (response.data) {
+       
+        if (response.data.success === true) {
           dispatch("postlogin", {email, password})
+        } else {  
+         commit("error", response.data.data.email[0])
         }
       })
     },
@@ -70,7 +76,7 @@ export default new Vuex.Store({
       await icyecomServices.profile({headers: {"Authorization": `Bearer ${token}`}}).then(response => {
         commit("profile", response.data)
       })
-    }
+    },
   },
   getters: {
     getToken(state) {
@@ -93,7 +99,10 @@ export default new Vuex.Store({
     }, 
     profile(state) {
       return state.profile
-    }
+    },
+    error(state) {
+      return state.error
+    }    
   },
   modules: {},
 });

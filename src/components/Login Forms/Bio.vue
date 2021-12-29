@@ -19,9 +19,9 @@
           v-model="bio"
           class="bg-cream focus:outline-none shadow-sm py-3 px-2 mt-8 w-full"
         ></textarea>
+        <p class="text-center text-red-500">{{ error }}</p>
       </div>
     </div>
-    <p class="text-center text-red-500">{{ error }}</p>
   </div>
 </template>
 
@@ -37,10 +37,9 @@ export default {
     submit() {
       if (this.bio == "") {
         this.error = "Bio field is required";
-        console.log(this.error);
         setTimeout(() => {
           this.error = "";
-        }, 2000);
+        }, 1000);
         this.$store.commit("enableNext", false);
       } else {
         this.$store.commit("enableNext", true);
@@ -52,6 +51,9 @@ export default {
     this.$root.$on("Next", () => {
       this.submit();
     });
+  },
+  created() {
+    this.$store.commit("enableNext", false);
   },
 };
 </script>

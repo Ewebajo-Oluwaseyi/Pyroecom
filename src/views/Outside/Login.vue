@@ -49,15 +49,29 @@
             type="email"
             placeholder="Enter your email address"
             v-model="login.email"
-            class="w-full my-5 bg-transparent focus:outline-none px-1 py-4 border-b border-opacity-75"
+            v-bind:class="
+              error.email
+                ? 'w-full my-5 bg-transparent focus:outline-none px-1 py-4 border-b border-red-500'
+                : 'w-full my-5 bg-transparent focus:outline-none px-1 py-4 border-b border-opacity-75'
+            "
           />
+          <p class="text-center text-red-500 text-xs">
+            {{ error.email }}
+          </p>
           <br />
           <input
             type="password"
             placeholder="Enter your password"
             v-model="login.password"
-            class="w-full my-5 bg-transparent focus:outline-none px-1 py-4 border-b border-opacity-75"
+            v-bind:class="
+              error.password
+                ? 'w-full my-5 bg-transparent focus:outline-none px-1 py-4 border-b border-red-500'
+                : 'w-full my-5 bg-transparent focus:outline-none px-1 py-4 border-b border-opacity-75'
+            "
           />
+          <p class="text-center text-red-500 text-xs">
+            {{ error.password }}
+          </p>
 
           <button
             @click.prevent="Userlogin"
@@ -67,7 +81,7 @@
             {{ loading ? "loading..." : "Login" }}
           </button>
         </form>
-        <p class="text-center text-red-500">{{ error }}</p>
+        <p class="text-center text-red-500">{{ error.error }}</p>
         <p class="text-center my-8">
           Don't have an account?
           <router-link to="/register" class="text-amber">Register</router-link>
@@ -91,23 +105,27 @@ export default {
         email: "",
         password: "",
       },
-      error: "",
+      error: {
+        email: "",
+        password: "",
+        error: "",
+      },
     };
   },
   methods: {
     ...mapActions(["postlogin"]),
     async Userlogin() {
       if (this.login.email == "") {
-        this.error = "Include email";
+        this.error.email = "Include email";
         setTimeout(() => {
-          this.error = "";
-        }, 2000);
+          this.error.email = "";
+        }, 1000);
         this.loading = false;
       } else if (this.login.password == "") {
-        this.error = "Include password";
+        this.error.password = "Include password";
         setTimeout(() => {
-          this.error = "";
-        }, 2000);
+          this.error.password = "";
+        }, 1000);
         this.loading = false;
       } else {
         this.loading = true;
@@ -122,10 +140,10 @@ export default {
           this.loading = false;
         } catch (err) {
           if (err) {
-            this.error = "Incorrect email and password";
+            this.error.error = "Incorrect email and password";
             setTimeout(() => {
-              this.error = "";
-            }, 2000);
+              this.error.error = "";
+            }, 1000);
             this.loading = false;
           }
         }

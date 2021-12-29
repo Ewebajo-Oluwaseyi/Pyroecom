@@ -28,6 +28,9 @@
                 {{ gender.gender }}
               </option>
             </select>
+            <p class="text-center text-red-500 text-xs mt-2">
+              {{ error.gender }}
+            </p>
           </div>
 
           <div class="flex-grow">
@@ -42,13 +45,17 @@
           <div class="flex-grow">
             <label for="languages"
               >Languages <span class="text-red-600">*</span></label
-            ><br />
+            >
+            <p class="text-center text-red-500 text-xs">
+              {{ error.languages }}
+            </p>
+            <br />
             <input
               type="text"
               id="languages"
               v-model="data.languages1"
               placeholder="Select Language"
-              class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
+              class="bg-cream focus:outline-none shadow-sm py-2 px-2 w-full"
             />
 
             <input
@@ -62,7 +69,6 @@
         </form>
       </div>
     </div>
-    <p class="text-center text-red-500">{{ error }}</p>
   </div>
 </template>
 
@@ -86,21 +92,25 @@ export default {
           gender: "FEMALE",
         },
       ],
-      error: "",
+      error: {
+        gender: "",
+        languages: "",
+      },
     };
   },
   methods: {
     submit() {
-      if (
-        this.data.gender === "" ||
-        this.data.birthday === "" ||
-        this.data.languages1 === "" ||
-        this.data.languages2 === ""
-      ) {
-        this.error = "Include Information";
+      if (this.data.gender === "") {
+        this.error.gender = "Include gender";
         setTimeout(() => {
-          this.error = "";
-        }, 2000);
+          this.error.gender = "";
+        }, 1000);
+        this.$store.commit("enableNext", false);
+      } else if (this.data.languages1 === "" || this.data.languages2 === "") {
+        this.error.languages = "Include languages";
+        setTimeout(() => {
+          this.error.languages = "";
+        }, 1000);
         this.$store.commit("enableNext", false);
       } else {
         this.$store.commit("enableNext", true);

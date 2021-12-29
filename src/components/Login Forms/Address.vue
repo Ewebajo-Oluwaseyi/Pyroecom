@@ -18,8 +18,15 @@
               id="address"
               v-model="address.address1"
               placeholder="Address"
-              class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
+              v-bind:class="
+                error.address1
+                  ? 'ring ring-red-500 bg-cream shadow-sm py-2 px-2 mt-2 w-full'
+                  : 'bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full'
+              "
             />
+            <p class="text-center text-red-500 text-xs mt-2">
+              {{ error.address1 }}
+            </p>
           </div>
 
           <div class="flex-grow">
@@ -41,12 +48,18 @@
               id="country"
               v-model="address.country"
               placeholder=""
-              class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
+              v-bind:class="
+                error.country
+                  ? 'ring ring-red-500 bg-cream shadow-sm py-2 px-2 mt-2 w-full'
+                  : 'bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full'
+              "
             />
+            <p class="text-center text-red-500 text-xs mt-2">
+              {{ error.country }}
+            </p>
           </div>
           <div class="flex-grow">
-            <label for="state">State <span class="text-red-600">*</span></label
-            ><br />
+            <label for="state">State </label><br />
             <input
               type="text"
               id="state"
@@ -63,8 +76,15 @@
               id="city"
               placeholder="City"
               v-model="address.city"
-              class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
+              v-bind:class="
+                error.city
+                  ? 'ring ring-red-500 bg-cream shadow-sm py-2 px-2 mt-2 w-full'
+                  : 'bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full'
+              "
             />
+            <p class="text-center text-red-500 text-xs mt-2">
+              {{ error.city }}
+            </p>
           </div>
           <div class="flex-grow">
             <label for="telephone">
@@ -75,13 +95,19 @@
               id="telephone"
               v-model="address.phone"
               placeholder="Phone number"
-              class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
+              v-bind:class="
+                error.phone
+                  ? 'ring ring-red-500 bg-cream shadow-sm py-2 px-2 mt-2 w-full'
+                  : 'bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full'
+              "
             />
+            <p class="text-center text-red-500 text-xs mt-2">
+              {{ error.phone }}
+            </p>
           </div>
         </form>
       </div>
     </div>
-    <p class="text-center text-red-500">{{ error }}</p>
   </div>
 </template>
 
@@ -97,23 +123,39 @@ export default {
         city: "",
         phone: "",
       },
-      error: "",
+      error: {
+        address1: "",
+        country: "",
+        city: "",
+        phone: "",
+      },
     };
   },
   methods: {
     submit() {
-      if (
-        this.address.address1 === "" ||
-        this.address.country === "" ||
-        this.address.state === "" ||
-        this.address.city === "" ||
-        this.address.phone === ""
-      ) {
-        this.error = "Include Address";
-        console.log(this.error);
+      if (this.address.address1 === "") {
+        this.error.address1 = "Include Address";
         setTimeout(() => {
-          this.error = "";
-        }, 2000);
+          this.error.address1 = "";
+        }, 1000);
+        this.$store.commit("enableNext", false);
+      } else if (this.address.country === "") {
+        this.error.country = "Include country";
+        setTimeout(() => {
+          this.error.country = "";
+        }, 1000);
+        this.$store.commit("enableNext", false);
+      } else if (this.address.city === "") {
+        this.error.city = "Include city";
+        setTimeout(() => {
+          this.error.city = "";
+        }, 1000);
+        this.$store.commit("enableNext", false);
+      } else if (this.address.phone === "") {
+        this.error.phone = "Include phone number";
+        setTimeout(() => {
+          this.error.phone = "";
+        }, 1000);
         this.$store.commit("enableNext", false);
       } else {
         this.$store.commit("enableNext", true);
@@ -135,6 +177,9 @@ export default {
     this.$root.$on("Next", () => {
       this.submit();
     });
+  },
+  created() {
+    this.$store.commit("enableNext", false);
   },
 };
 </script>

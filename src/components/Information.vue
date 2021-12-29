@@ -19,8 +19,11 @@
           @click="submit"
           class="bg-amber w-28 py-3 text-white rounded-sm focus:outline-none"
         >
-          Submit
+          {{ loading ? "loading..." : "Submit" }}
         </button>
+        <p class="text-center text-red-500 text-sm">
+          {{ error }}
+        </p>
       </div>
     </div>
   </div>
@@ -56,20 +59,22 @@ export default {
           component: OtherInfo,
         },
       ],
+      error: "",
     };
   },
   computed: {
     ...mapGetters({
       enableNext: "next",
+      getError: "error",
     }),
   },
   methods: {
     ...mapActions(["postRegister"]),
     previous() {
       this.currentPage--;
+      this.$root.$emit("Previous");
     },
     next() {
-      console.log(this.enableNext);
       if (this.enableNext) {
         this.currentPage++;
       }
@@ -80,6 +85,9 @@ export default {
       this.$root.$emit("Submit");
       this.postRegister();
       this.loading = false;
+      if (this.getError) {
+        this.error = this.getError;
+      }
     },
   },
 };
