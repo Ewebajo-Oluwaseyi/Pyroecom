@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white shadow-sm w-full">
+  <div class="bg-white shadow-sm w-fit">
     <div class="flex justify-between items-center p-3">
       <h1 class="text-2xl font-semibold">Chat</h1>
     </div>
