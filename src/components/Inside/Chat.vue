@@ -35,7 +35,7 @@ export default {
     const profile = this.profile;
     Talk.ready.then(function () {
       var me = new Talk.User({
-        id: profile.id,
+        id: `${profile.email}_${profile.id}`,
         name: profile.firstname,
         email: profile.email,
         welcomeMessage: "Hey there! How are you? :-)",
@@ -47,7 +47,6 @@ export default {
           me: me,
         });
       }
-      console.log(window.talkSession);
       var other = new Talk.User({
         id: "654321",
         name: "Sebastian",
