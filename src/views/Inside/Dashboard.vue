@@ -28,7 +28,7 @@
           </div>
         </section>
 
-        <aside class="bg-white mx-5 xl:w-1/3 h-96">
+        <aside class="bg-white mx-5 md:w-1/3 h-96">
           <Chat />
         </aside>
       </main>
