@@ -1,10 +1,10 @@
 <template>
-  <div class="bg-white shadow-sm h-72">
+  <div class="bg-white shadow-sm w-full">
     <div class="flex justify-between items-center p-3">
       <h1 class="text-2xl font-semibold">Chat</h1>
     </div>
     <hr />
-    <div id="talkjs-container" class="p-4">
+    <div id="talkjs-container" class="h-96 p-2">
       <i>Loading chat...</i>
     </div>
   </div>
