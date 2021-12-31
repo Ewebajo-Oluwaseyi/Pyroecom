@@ -30,9 +30,8 @@ export default {
   },
   async created() {
     await this.getProfile();
-  },
-  mounted: function () {
     const profile = this.profile;
+    console.log(profile);
     Talk.ready.then(function () {
       var me = new Talk.User({
         id: `${profile.email}_${profile.id}`,
@@ -41,6 +40,7 @@ export default {
         welcomeMessage: "Hey there! How are you? :-)",
         role: "default",
       });
+      console.log(me);
       if (!window.talkSession) {
         window.talkSession = new Talk.Session({
           appId: "taOMwb44",
