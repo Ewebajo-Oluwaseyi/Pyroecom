@@ -8060,6 +8060,11 @@ table@^5.2.3:
     resolve "^1.20.0"
     tmp "^0.2.1"
 
+talkjs@^0.15.1:
+  version "0.15.1"
+  resolved "https://registry.yarnpkg.com/talkjs/-/talkjs-0.15.1.tgz#a70ddbd2d2e6fd0b3475ee8bfa5b53262f884123"
+  integrity sha512-Zz0o6AlmCgNlbxmyiOE4840OQipAMPpw95ASslTgg7/bMfIV6DtlznryaVd+rDJ1FM+lqS7DEkgMPpOhnnAIqA==
+
 tapable@^1.0.0, tapable@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-1.1.3.tgz#a1fccc06b58db61fd7a45da2da44f5f3a3e67ba2"
