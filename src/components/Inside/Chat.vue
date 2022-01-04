@@ -33,7 +33,7 @@ export default {
     const profile = this.profile;
     Talk.ready.then(function () {
       var me = new Talk.User({
-        id: `${profile.email}_${profile.id}`,
+        id: `${profile.lastname}_${profile.firstname}`,
         name: profile.firstname,
         email: profile.email,
         welcomeMessage: "Hey there! How are you? :-)",

@@ -81,7 +81,6 @@ export default new Vuex.Store({
       })
     },
     async updateProfile({commit}, payload) {
-      console.log(payload)
       const token = localStorage.getItem("jwt");
       await icyecomServices.edit(payload, {headers: {"Authorization": `Bearer ${token}`}}).then(response => {
         if (response.status === 200) {

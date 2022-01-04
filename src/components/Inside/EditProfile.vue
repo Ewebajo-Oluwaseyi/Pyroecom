@@ -34,8 +34,15 @@
               id="firstName"
               v-model="editProfile.firstname"
               placeholder="Enter your first name"
-              class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
+              v-bind:class="
+                error.firstName
+                  ? 'ring ring-red-500 bg-cream shadow-sm py-2 px-2 mt-2 w-full'
+                  : 'bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full'
+              "
             />
+            <p class="text-center text-red-500 text-xs mt-2">
+              {{ error.firstName }}
+            </p>
           </div>
           <div class="flex-grow">
             <label for="lastname">Last Name</label><br />
@@ -44,8 +51,15 @@
               id="lastName"
               v-model="editProfile.lastname"
               placeholder="Enter your last name"
-              class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
+              v-bind:class="
+                error.lastName
+                  ? 'ring ring-red-500 bg-cream shadow-sm py-2 px-2 mt-2 w-full'
+                  : 'bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full'
+              "
             />
+            <p class="text-center text-red-500 text-xs mt-2">
+              {{ error.lastName }}
+            </p>
           </div>
           <div class="flex-grow">
             <label for="address">Address</label><br />
@@ -54,8 +68,15 @@
               id="address"
               v-model="editProfile.address_1"
               placeholder="Enter your address"
-              class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
+              v-bind:class="
+                error.address_1
+                  ? 'ring ring-red-500 bg-cream shadow-sm py-2 px-2 mt-2 w-full'
+                  : 'bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full'
+              "
             />
+            <p class="text-center text-red-500 text-xs mt-2">
+              {{ error.address_1 }}
+            </p>
           </div>
           <div class="flex-grow">
             <label for="address 2">Address 2</label><br />
@@ -74,8 +95,15 @@
               id="city"
               v-model="editProfile.city"
               placeholder="Enter your city"
-              class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
+              v-bind:class="
+                error.city
+                  ? 'ring ring-red-500 bg-cream shadow-sm py-2 px-2 mt-2 w-full'
+                  : 'bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full'
+              "
             />
+            <p class="text-center text-red-500 text-xs mt-2">
+              {{ error.city }}
+            </p>
           </div>
           <div class="flex-grow">
             <label for="country">Country</label><br />
@@ -84,8 +112,15 @@
               id="country"
               v-model="editProfile.country"
               placeholder="Enter your address"
-              class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
+              v-bind:class="
+                error.country
+                  ? 'ring ring-red-500 bg-cream shadow-sm py-2 px-2 mt-2 w-full'
+                  : 'bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full'
+              "
             />
+            <p class="text-center text-red-500 text-xs mt-2">
+              {{ error.country }}
+            </p>
           </div>
           <div class="flex-grow w-full">
             <label for="bio">Bio</label><br />
@@ -95,6 +130,9 @@
               v-model="editProfile.bio"
               class="bg-cream focus:outline-none shadow-sm py-3 px-2 mt-8 w-full"
             ></textarea>
+            <p class="text-center text-red-500 text-xs mt-2">
+              {{ error.bio }}
+            </p>
           </div>
           <div class="flex flex-wrap">
             <div class="flex justify-center">
@@ -124,6 +162,14 @@ export default {
     return {
       loading: false,
       profile: [],
+      error: {
+        firstName: "",
+        lastName: "",
+        address_1: "",
+        city: "",
+        country: "",
+        bio: "",
+      },
     };
   },
   props: ["editProfile"],
@@ -132,8 +178,9 @@ export default {
   },
   methods: {
     ...mapActions(["updateProfile", "getProfile"]),
-    closeModal() {
+    async closeModal() {
       this.toggleModal();
+      await this.getProfile();
     },
     toggleModal() {
       const body = document.querySelector("body");
@@ -143,25 +190,62 @@ export default {
       body.classList.toggle("modal-active");
     },
     async update() {
-      this.loading = true;
-      try {
-        // const payload = this.editProfile;
-        const payload = {
-          firstname: this.editProfile.firstname,
-          lastname: this.editProfile.lastname,
-          address_1: this.editProfile.address_1,
-          address_2: this.editProfile.address_2,
-          phone: this.editProfile.phone,
-          city: this.editProfile.city,
-          country: this.editProfile.country,
-        };
-        await this.updateProfile(payload);
+      if (this.editProfile.firstname == "") {
+        this.error.firstName = "first name is required";
+        setTimeout(() => {
+          this.error.firstName = "";
+        }, 1000);
         this.loading = false;
-        this.getProfile();
-        this.closeModal();
-      } catch (err) {
+      } else if (this.editProfile.lastname == "") {
+        this.error.lastName = "last name is required";
+        setTimeout(() => {
+          this.error.lastName = "";
+        }, 1000);
         this.loading = false;
-        console.log(err);
+      } else if (this.editProfile.address_1 == "") {
+        this.error.address_1 = "address is required";
+        setTimeout(() => {
+          this.error.address_1 = "";
+        }, 1000);
+        this.loading = false;
+      } else if (this.editProfile.city == "") {
+        this.error.city = "city is required";
+        setTimeout(() => {
+          this.error.city = "";
+        }, 1000);
+        this.loading = false;
+      } else if (this.editProfile.country == "") {
+        this.error.country = "country is required";
+        setTimeout(() => {
+          this.error.country = "";
+        }, 1000);
+        this.loading = false;
+      } else if (this.editProfile.bio == "") {
+        this.error.bio = "bio is required";
+        setTimeout(() => {
+          this.error.bio = "";
+        }, 1000);
+        this.loading = false;
+      } else {
+        this.loading = true;
+        try {
+          // const payload = this.editProfile;
+          const payload = {
+            firstname: this.editProfile.firstname,
+            lastname: this.editProfile.lastname,
+            address_1: this.editProfile.address_1,
+            address_2: this.editProfile.address_2,
+            phone: this.editProfile.phone,
+            city: this.editProfile.city,
+            country: this.editProfile.country,
+          };
+          await this.updateProfile(payload);
+          this.loading = false;
+          this.closeModal();
+        } catch (err) {
+          this.loading = false;
+          console.log(err);
+        }
       }
     },
   },
