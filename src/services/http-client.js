@@ -10,6 +10,9 @@ class icyecomServices {
     profile(data) {
         return axios.get("/me", data)
     }
+    edit(data, headers) {
+        return axios.put("/update", data, headers)
+    }
 }
 
 export default new icyecomServices();

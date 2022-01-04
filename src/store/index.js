@@ -15,7 +15,8 @@ export default new Vuex.Store({
     moreInfo: "",
     profile: [],
     next: false,
-    error: ""
+    error: "",
+    msg: ""
   },
   mutations: {
     toggleSidebar: (state) => {
@@ -44,7 +45,10 @@ export default new Vuex.Store({
     },
     error: (state, payload) =>{
       state.error = payload;
-    }
+    }, 
+    msg: (state, payload) =>{
+      state.msg = payload;
+    },
   },
   actions: {
     async postlogin({commit}, payload) {
@@ -73,10 +77,24 @@ export default new Vuex.Store({
     async getProfile({commit}) {
       const token = localStorage.getItem("jwt");
       await icyecomServices.profile({headers: {"Authorization": `Bearer ${token}`}}).then(response => {
-        commit("profile", response.data)
-        console.log(response)
+        commit("profile", response.data);
       })
     },
+    async updateProfile({commit}, payload) {
+      console.log(payload)
+      const token = localStorage.getItem("jwt");
+      await icyecomServices.edit(payload, {headers: {"Authorization": `Bearer ${token}`}}).then(response => {
+        console.log(response.status)
+        if (response.status === 200) {
+          localStorage.removeItem("jwt");
+          router.push("/login");
+        }
+        commit("msg", response.data.message);
+        setTimeout(() => {
+          commit("msg", "");
+        }, 2000);
+      })
+    }
   },
   getters: {
     getToken(state) {
@@ -102,6 +120,9 @@ export default new Vuex.Store({
     },
     error(state) {
       return state.error
+    },
+    msg(state) {
+      return state.msg
     }    
   },
   modules: {},

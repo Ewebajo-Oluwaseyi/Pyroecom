@@ -22,7 +22,10 @@
             </div>
           </div>
           <div>
-            <button class="py-1 w-32 rounded-sm bg-amber text-white">
+            <button
+              class="py-1 w-32 rounded-sm bg-amber text-white"
+              @click="toggleModal(profile)"
+            >
               Edit Profile
             </button>
           </div>
@@ -85,6 +88,7 @@
               </div>
             </div>
           </div>
+          <editProfile :editProfile="editableProfile" />
         </section>
       </div>
     </div>
@@ -95,10 +99,17 @@
 import sidebar from "@/components/Side bar/SideBar.vue";
 import Nav from "@/components/Inside/Nav.vue";
 import { mapActions, mapGetters } from "vuex";
+import editProfile from "@/components/Inside/EditProfile.vue";
 export default {
+  data() {
+    return {
+      editableProfile: {},
+    };
+  },
   components: {
     sidebar,
     "top-nav": Nav,
+    editProfile,
   },
   computed: {
     sidebar() {
@@ -112,6 +123,14 @@ export default {
     ...mapActions({
       getProfile: "getProfile",
     }),
+    toggleModal(profile) {
+      this.editableProfile = profile;
+      const body = document.querySelector("body");
+      const modal = document.querySelector(".modal");
+      modal.classList.toggle("opacity-0");
+      modal.classList.toggle("pointer-events-none");
+      body.classList.toggle("modal-active");
+    },
   },
   async created() {
     await this.getProfile();

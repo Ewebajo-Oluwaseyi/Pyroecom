@@ -41,6 +41,7 @@
     </div>
     <div class="bg-blueDark lg:w-1/2 px-4 text-white h-full flex items-center">
       <div class="max-w-lg mx-auto w-11/12">
+        <p class="text-center mb-2">{{ message }}</p>
         <h1 class="text-2xl font-bold">
           Log in to <span class="text-amber">Pyroecom</span>
         </h1>
@@ -98,7 +99,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import Spinner from "@/components/Spinner";
 
 export default {
@@ -118,6 +119,11 @@ export default {
         error: "",
       },
     };
+  },
+  computed: {
+    ...mapGetters({
+      message: "msg",
+    }),
   },
   methods: {
     ...mapActions(["postlogin"]),

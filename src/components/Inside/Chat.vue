@@ -31,7 +31,6 @@ export default {
   async created() {
     await this.getProfile();
     const profile = this.profile;
-    console.log(profile);
     Talk.ready.then(function () {
       var me = new Talk.User({
         id: `${profile.email}_${profile.id}`,
@@ -40,7 +39,6 @@ export default {
         welcomeMessage: "Hey there! How are you? :-)",
         role: "default",
       });
-      console.log(me);
       if (!window.talkSession) {
         window.talkSession = new Talk.Session({
           appId: "taOMwb44",
@@ -48,9 +46,9 @@ export default {
         });
       }
       var other = new Talk.User({
-        id: "654321",
-        name: "Sebastian",
-        email: "Sebastian@example.com",
+        id: "1_admin@icyecom.com",
+        name: "Team",
+        email: "admin@icyecom.com",
         photoUrl: "https://demo.talkjs.com/img/sebastian.jpg",
         welcomeMessage: "Hey, how can I help?",
         role: "default",
