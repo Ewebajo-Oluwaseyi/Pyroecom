@@ -34,7 +34,7 @@ export default {
     Talk.ready.then(function () {
       var me = new Talk.User({
         id: `${profile.email}_${profile.id}`,
-        name: `${profile.lastname}_${profile.firstname}`,
+        name: `${profile.lastname} ${profile.firstname}`,
         email: profile.email,
         welcomeMessage: "Hey there! How are you? :-)",
         role: "default",
