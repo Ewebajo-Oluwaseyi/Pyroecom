@@ -84,15 +84,14 @@ export default new Vuex.Store({
       console.log(payload)
       const token = localStorage.getItem("jwt");
       await icyecomServices.edit(payload, {headers: {"Authorization": `Bearer ${token}`}}).then(response => {
-        console.log(response.status)
         if (response.status === 200) {
-          localStorage.removeItem("jwt");
-          router.push("/login");
+          localStorage.setItem("jwt", response.data.access_token);
+          commit("token", response.data.access_token);
         }
-        commit("msg", response.data.message);
+       /* commit("msg", response.data.message);
         setTimeout(() => {
           commit("msg", "");
-        }, 2000);
+        }, 2000);*/
       })
     }
   },
