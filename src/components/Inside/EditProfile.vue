@@ -238,6 +238,7 @@ export default {
             phone: this.editProfile.phone,
             city: this.editProfile.city,
             country: this.editProfile.country,
+            bio: this.editProfile.bio,
           };
           await this.updateProfile(payload);
           this.loading = false;
