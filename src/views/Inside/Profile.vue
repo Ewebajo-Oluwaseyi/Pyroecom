@@ -98,12 +98,13 @@
 <script>
 import sidebar from "@/components/Side bar/SideBar.vue";
 import Nav from "@/components/Inside/Nav.vue";
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 import editProfile from "@/components/Inside/EditProfile.vue";
 export default {
   data() {
     return {
       editableProfile: {},
+      profile: [],
     };
   },
   components: {
@@ -115,9 +116,6 @@ export default {
     sidebar() {
       return this.$store.state.sidebar;
     },
-    ...mapGetters({
-      profile: "profile",
-    }),
   },
   methods: {
     ...mapActions({
@@ -134,6 +132,7 @@ export default {
   },
   async created() {
     await this.getProfile();
+    this.profile = JSON.parse(localStorage.getItem("profile"));
   },
 };
 </script>

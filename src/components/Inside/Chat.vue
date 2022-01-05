@@ -12,15 +12,10 @@
 
 <script>
 import Talk from "talkjs";
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 export default {
   data() {
     return {};
-  },
-  computed: {
-    ...mapGetters({
-      profile: "profile",
-    }),
   },
 
   methods: {
@@ -30,7 +25,7 @@ export default {
   },
   async created() {
     await this.getProfile();
-    const profile = this.profile;
+    const profile = JSON.parse(localStorage.getItem("profile"));
     Talk.ready.then(function () {
       var me = new Talk.User({
         id: `${profile.email}_${profile.id}`,

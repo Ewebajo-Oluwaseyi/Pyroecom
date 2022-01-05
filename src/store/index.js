@@ -81,6 +81,9 @@ export default new Vuex.Store({
     async getProfile({commit}) {
       const token = localStorage.getItem("jwt");
       await icyecomServices.profile({headers: {"Authorization": `Bearer ${token}`}}).then(response => {
+        if(response.data) {
+          localStorage.setItem("profile", JSON.stringify(response.data));
+        }
         commit("profile", response.data);
       })
     },
