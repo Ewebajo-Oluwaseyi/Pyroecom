@@ -16,7 +16,8 @@ export default new Vuex.Store({
     profile: [],
     next: false,
     error: "",
-    msg: ""
+    msg: "",
+    notification: []
   },
   mutations: {
     toggleSidebar: (state) => {
@@ -49,6 +50,9 @@ export default new Vuex.Store({
     msg: (state, payload) =>{
       state.msg = payload;
     },
+    notification: (state, payload) => {
+      state.notification = payload
+    }
   },
   actions: {
     async postlogin({commit}, payload) {
@@ -92,6 +96,12 @@ export default new Vuex.Store({
           commit("msg", "");
         }, 2000);*/
       })
+    },
+    async getNotification({commit}) {
+      const token = localStorage.getItem("jwt");
+      await icyecomServices.noti({headers: {"Authorization": `Bearer ${token}`}}).then(response => {
+        commit("notification", response.data.data)
+      })
     }
   },
   getters: {
@@ -121,7 +131,10 @@ export default new Vuex.Store({
     },
     msg(state) {
       return state.msg
-    }    
+    },
+    notification(state) {
+      return state.notification
+    }
   },
   modules: {},
 });

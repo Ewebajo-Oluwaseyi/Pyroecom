@@ -13,7 +13,7 @@
       </div>
       <div class="flex items-center gap-5 text-white text-sm px-8">
         <h1 class="hidden md:block mr-4">December 1, 2021</h1>
-        <button @click="isOpen = !isOpen" class="relative cursor-pointer mr-4">
+        <button @click="openNotification" class="relative cursor-pointer mr-4">
           <span
             class="iconify"
             data-icon="bi:bell-fill"
@@ -34,9 +34,11 @@
                 v-for="notification in notifications"
                 :key="notification.id"
               >
-                <div class="notiimg">
-                  <img :src="notification.image" alt="" />
-                </div>
+                <span
+                  class="iconify notiimg"
+                  data-icon="bi:bell-fill"
+                  style="color: black"
+                ></span>
                 <div class="noti-details text-left ml-4">
                   <h2 class="text-black">{{ notification.message }}</h2>
                   <h5 class="text-black text-muted">
@@ -67,12 +69,12 @@
 
 <script>
 import auth from "../../utils/auth";
-
+import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
       isOpen: false,
-      notifications: [
+      /*notifications: [
         {
           id: 1,
           image:
@@ -94,15 +96,25 @@ export default {
           message: "Michael commented on your photo!",
           time: "About 56 minutes ago",
         },
-      ],
+      ],*/
     };
   },
+  computed: {
+    ...mapGetters({
+      notifications: "notification",
+    }),
+  },
   methods: {
+    ...mapActions(["getNotification"]),
     toggleSidebar() {
       this.$store.commit("toggleSidebar");
     },
     logOut() {
       auth.logoutUser();
+    },
+    openNotification() {
+      this.isOpen = !this.Open;
+      this.getNotification();
     },
   },
 };
@@ -165,10 +177,8 @@ export default {
 }
 .notiimg {
   align-self: flex-start;
-  margin-right: 1rem;
-  border-radius: 100%;
-  height: 3rem;
-  width: 3rem;
+  height: 1.5rem;
+  width: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;

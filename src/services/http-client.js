@@ -13,6 +13,9 @@ class icyecomServices {
     edit(data, headers) {
         return axios.put("/update", data, headers)
     }
+    noti(headers) {
+        return axios.get("/notifications", headers)
+    }
 }
 
 export default new icyecomServices();
