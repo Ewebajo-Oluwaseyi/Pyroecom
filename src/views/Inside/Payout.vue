@@ -10,24 +10,31 @@
       <section class="w-full py-8 px-5">
         <div class="bg-white shadow-sm">
           <table class="table-auto w-full boarder-collapse">
-            <thead class="bg-grey-light">
+            <thead class="border">
               <tr>
-                <th class="px-2 py-2 text-gray-dark">Id</th>
-                <th class="px-2 py-2 text-gray-dark">Amount</th>
-                <th class="px-2 py-2 text-gray-dark">Student</th>
-                <th class="px-2 py-2 text-gray-dark">Paid_Date</th>
+                <td class="border-b px-2 py-2 text-gray-dark">Payout Table</td>
               </tr>
             </thead>
-            <tbody>
+            <thead class="border bg-gray-300">
+              <tr>
+                <th class="border-b px-2 py-2 text-gray-dark">Id</th>
+                <th class="border-b px-2 py-2 text-gray-dark">Amount</th>
+                <th class="border-b px-2 py-2 text-gray-dark">Student</th>
+                <th class="border-b px-2 py-2 text-gray-dark">Paid_Date</th>
+              </tr>
+            </thead>
+            <tbody class="border">
               <tr v-for="(table, index) in tables" :key="index">
-                <td class="border px-2 py-2 text-center">
+                <td class="border-b px-2 py-2 text-center">
                   {{ parseInt(index + 1) }}
                 </td>
-                <td class="border px-2 py-2 text-center">{{ table.amount }}</td>
-                <td class="border px-2 py-2 text-center">
+                <td class="border-b px-2 py-2 text-center">
+                  {{ table.amount }}
+                </td>
+                <td class="border-b px-2 py-2 text-center">
                   {{ table.student }}
                 </td>
-                <td class="border px-2 py-2 text-center">{{ table.date }}</td>
+                <td class="border-b px-2 py-2 text-center">{{ table.date }}</td>
               </tr>
             </tbody>
           </table>
