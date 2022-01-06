@@ -15,17 +15,12 @@
       <hr class="my-5" />
       <div class="flex justify-between w-11/12 mx-auto">
         <div>
-          <h1 class="text-gray-500 uppercase text-sm font-bold">Available</h1>
+          <h1 class="text-gray-500 uppercase text-sm font-bold">Verified</h1>
           <h1 class="text-4xl font-bold text-blueMid">1</h1>
         </div>
 
         <div>
-          <h1 class="text-gray-500 uppercase text-sm font-bold">Applied</h1>
-          <h1 class="text-4xl font-bold text-blueMid">0</h1>
-        </div>
-
-        <div>
-          <h1 class="text-gray-500 uppercase text-sm font-bold">Waitlist</h1>
+          <h1 class="text-gray-500 uppercase text-sm font-bold">Active</h1>
           <h1 class="text-4xl font-bold text-blueMid">0</h1>
         </div>
       </div>
