@@ -252,23 +252,23 @@ export default {
       currentIndex: false,
       reasons: [
         {
-          title: "Real influencers",
-          body: "We’re the largest warm influencer marketing network in the world (every influencer joined on their own).",
+          title: "Team up with potential students",
+          body: "These days, it's harder to reach your target audience especially when you don't have access to these audience. Influencers promote products and services to reach target audience and amplify brand awareness for our students.",
           image: require("../../assets/images/influncer.jpg"),
         },
         {
-          title: "No long-term contracts",
-          body: "Enjoy peace of mind knowing there are never any lengthy commitments, minimum budgets or spends, ever!",
+          title: "Easy Payments",
+          body: "Effortlessly compensate influencers based on agreed percentages - the service ensures that all work is completed before influencers are paid",
           image: require("../../assets/images/contract.jpg"),
         },
         {
-          title: "An All-in-One Solution",
-          body: "Influencer Discovery, Payments and messaging tools built-in so you never have to go off-platform.",
+          title: "Best Price",
+          body: "Negotiations between students and influencers are fair and very attractive.",
           image: require("../../assets/images/solution.jpg"),
         },
         {
-          title: "Amazing ROI",
-          body: "Maximize your budget with the best dollar-to-real influencer ratio in the industry.",
+          title: "Over 4000+ Creators",
+          body: "Qualified influencers can apply on the platform to offer their services or refer another influencer. Students can simultaneously search additional creators from all social media platforms",
           image: require("../../assets/images/roi.jpg"),
         },
       ],
