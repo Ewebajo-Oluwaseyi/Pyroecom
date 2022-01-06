@@ -297,35 +297,29 @@ export default {
       ],
       questions: [
         {
-          question: "The platform is free to use.",
-          answer:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          question: "How much does it cost to use?",
+          answer: "The platform is free to use.",
         },
         {
-          question: "You have to actually sign up to use the platform.",
-          answer:
-            "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur.",
+          question: "Can I get a demo of it?",
+          answer: "You have to actually sign up to use the platform.",
         },
         {
-          question:
+          question: "What social media networks does it support",
+          answer:
             "It supports all social media networks; Instagram, Facebook, Twitter, pinterest etc.",
-          answer:
-            "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.",
         },
         {
-          question: "Get the meaning of influencer marketing online.",
-          answer:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          question: "What is influencer marketing?",
+          answer: "Get the meaning of influencer marketing online.",
         },
         {
-          question: "Sign up here (link to redirect to the sign up page).",
-          answer:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          question: "How do I get started?",
+          answer: "Sign up here (link to redirect to the sign up page.",
         },
         {
-          question: "You need to contact the admin regarding that.",
-          answer:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+          question: "Can I be a student and an influencer?",
+          answer: "You need to contact the admin regarding that.",
         },
       ],
       stats: [
