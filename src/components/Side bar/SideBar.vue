@@ -19,18 +19,27 @@
 
     <ul class="text-white text-lg mt-8 font-bold">
       <router-link to="/"
-        ><li class="px-4 py-4 hover:bg-blue-300 duration-150 cursor-pointer">
-          Dashboard
+        ><li
+          class="flex items-center px-4 py-4 hover:bg-blue-300 duration-150 cursor-pointer"
+        >
+          <span class="iconify" data-icon="ci:dashboard"></span>
+          <div class="ml-2">Dashboard</div>
         </li></router-link
       >
       <router-link to="/profile">
-        <li class="px-4 py-4 hover:bg-blue-300 duration-150 cursor-pointer">
-          Profile
+        <li
+          class="flex items-center px-4 py-4 hover:bg-blue-300 duration-150 cursor-pointer"
+        >
+          <span class="iconify" data-icon="vs:profile"></span>
+          <div class="ml-2">Profile</div>
         </li></router-link
       >
       <router-link to="/payout">
-        <li class="px-4 py-4 hover:bg-blue-300 duration-150 cursor-pointer">
-          Transactions
+        <li
+          class="flex items-center px-4 py-4 hover:bg-blue-300 duration-150 cursor-pointer"
+        >
+          <span class="iconify" data-icon="grommet-icons:transaction"></span>
+          <div class="ml-2">Transactions</div>
         </li>
       </router-link>
     </ul>

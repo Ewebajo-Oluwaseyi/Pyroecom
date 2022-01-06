@@ -208,9 +208,7 @@
         <div class="mb-10">
           <h1 class="text-amber text-2xl font-bold">PYROECOM</h1>
           <p class="mt-6 leading-8">
-            9380 E Bahia Drive, Suite A102 <br />
-            Scottsdale, AZ 85260 <br />
-            (855) 476-1597
+            New York, United States Of America <br />
           </p>
         </div>
         <div class="mb-8">
