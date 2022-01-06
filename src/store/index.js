@@ -59,8 +59,9 @@ export default new Vuex.Store({
       await icyecomServices.login(payload).then(response => {
         commit("token", response.data.access_token);
         if(response.data.access_token) {
+          console.log(response.data.access_token)
           localStorage.setItem("jwt", response.data.access_token);
-          router.push("/")
+          router.push("/");
         }
       })
     },

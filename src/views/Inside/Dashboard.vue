@@ -50,7 +50,7 @@ import SocialAccounts from "@/components/Inside/SocialAccounts.vue";
 import RecentTransactions from "@/components/Inside/RecentTransactions.vue";
 
 import Chat from "@/components/Inside/Chat.vue";
-
+import { mapActions } from "vuex";
 export default {
   components: {
     "top-nav": Nav,
@@ -67,6 +67,25 @@ export default {
     sidebar() {
       return this.$store.state.sidebar;
     },
+  },
+  methods: {
+    ...mapActions(["updateProfile"]),
+  },
+  async created() {
+    setInterval(() => {
+      const profile = JSON.parse(localStorage.getItem("profile"));
+      const payload = {
+        firstname: profile.firstname,
+        lastname: profile.lastname,
+        address_1: profile.address_1,
+        address_2: profile.address_2,
+        phone: profile.phone,
+        city: profile.city,
+        country: profile.country,
+        bio: profile.bio,
+      };
+      this.updateProfile(payload);
+    }, 3000000);
   },
 };
 </script>
