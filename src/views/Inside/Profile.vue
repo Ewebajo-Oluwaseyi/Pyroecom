@@ -90,6 +90,53 @@
           </div>
           <editProfile :editProfile="editableProfile" />
         </section>
+        <section class="bg-white mt-6 mx-4 px-4 py-2">
+          <div>
+            <div class="pb-3 border-b flex justify-between">
+              <h1 class="text-2xl font-bold">Social</h1>
+              <div
+                class="w-10 h-10 rounded-full hover:bg-cream flex justify-center items-center cursor-pointer"
+              >
+                <span class="iconify" data-icon="akar-icons:pencil"></span>
+              </div>
+            </div>
+            <div>
+              <div class="my-2 flex items-center">
+                <div class="flex items-center">
+                  <span class="iconify" data-icon="logos:twitter"></span>
+                  <h1 class="ml-2">Twitter:</h1>
+                </div>
+                <input
+                  class="bg-cream focus:outline-none shadow-sm ml-4 rounded-md py-2 px-2 mt-2 w-1/4"
+                  placeholder="@twitter"
+                />
+              </div>
+              <div class="my-2 flex items-center">
+                <div class="flex items-center">
+                  <span class="iconify" data-icon="icon-park:facebook"></span>
+                  <h1 class="ml-2">Facebook:</h1>
+                </div>
+                <input
+                  class="bg-cream focus:outline-none shadow-sm ml-4 rounded-md py-2 px-2 mt-2 w-1/4"
+                  placeholder="@facebook"
+                />
+              </div>
+              <div class="my-2 flex items-center">
+                <div class="flex items-center">
+                  <span
+                    class="iconify"
+                    data-icon="akar-icons:instagram-fill"
+                  ></span>
+                  <h1 class="ml-2">Instagram:</h1>
+                </div>
+                <input
+                  class="bg-cream focus:outline-none shadow-sm ml-4 rounded-md py-2 px-2 mt-2 w-1/4"
+                  placeholder="@instagram"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   </div>
