@@ -30,7 +30,7 @@
       >
       <router-link to="/payout">
         <li class="px-4 py-4 hover:bg-blue-300 duration-150 cursor-pointer">
-          Payout
+          Transactions
         </li>
       </router-link>
     </ul>

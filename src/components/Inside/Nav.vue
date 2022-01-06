@@ -12,7 +12,9 @@
         ></span>
       </div>
       <div class="flex items-center gap-5 text-white text-sm px-8">
-        <h1 class="hidden md:block mr-4">December 1, 2021</h1>
+        <h1 class="hidden md:block mr-4">
+          {{ Date.now() | moment }}
+        </h1>
         <button @click="openNotification" class="relative cursor-pointer mr-4">
           <span
             class="iconify"
@@ -70,6 +72,7 @@
 <script>
 import auth from "../../utils/auth";
 import { mapActions, mapGetters } from "vuex";
+import moment from "moment";
 export default {
   data() {
     return {
@@ -98,6 +101,11 @@ export default {
         },
       ],*/
     };
+  },
+  filters: {
+    moment: function (date) {
+      return moment(date).format("MMMM Do YYYY");
+    },
   },
   computed: {
     ...mapGetters({

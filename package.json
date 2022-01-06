@@ -13,6 +13,7 @@
     "@vuelidate/validators": "^2.0.0-alpha.26",
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
+    "moment": "^2.29.1",
     "talkjs": "^0.15.1",
     "vue": "^2.6.11",
     "vue-jwt-decode": "^0.1.0",

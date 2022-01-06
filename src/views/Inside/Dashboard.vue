@@ -22,10 +22,6 @@
           <div class="mt-8 bg-white shadow-sm">
             <SocialAccounts />
           </div>
-
-          <div class="my-8 flex flex-wrap gap-8">
-            <RecentTransactions class="flex-grow" />
-          </div>
         </section>
 
         <aside class="bg-white mx-5 lg:w-1/2 xl:w-1/3 mb-4">
@@ -47,10 +43,10 @@ import Earnings from "@/components/Inside/Earnings.vue";
 import Info from "@/components/Inside/Info.vue";
 import SocialAccounts from "@/components/Inside/SocialAccounts.vue";
 
-import RecentTransactions from "@/components/Inside/RecentTransactions.vue";
+//import RecentTransactions from "@/components/Inside/RecentTransactions.vue";
 
 import Chat from "@/components/Inside/Chat.vue";
-import { mapActions } from "vuex";
+
 export default {
   components: {
     "top-nav": Nav,
@@ -59,7 +55,6 @@ export default {
     Earnings,
     Info,
     SocialAccounts,
-    RecentTransactions,
     Chat,
     sidebar,
   },
@@ -67,25 +62,6 @@ export default {
     sidebar() {
       return this.$store.state.sidebar;
     },
-  },
-  methods: {
-    ...mapActions(["updateProfile"]),
-  },
-  async created() {
-    setInterval(() => {
-      const profile = JSON.parse(localStorage.getItem("profile"));
-      const payload = {
-        firstname: profile.firstname,
-        lastname: profile.lastname,
-        address_1: profile.address_1,
-        address_2: profile.address_2,
-        phone: profile.phone,
-        city: profile.city,
-        country: profile.country,
-        bio: profile.bio,
-      };
-      this.updateProfile(payload);
-    }, 3000000);
   },
 };
 </script>
