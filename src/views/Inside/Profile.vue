@@ -2,7 +2,7 @@
   <div class="bg-cream">
     <sidebar />
     <div
-      :class="`absolute top-0 h-full duration-1000 ease-in-out ${
+      :class="`absolute top-0 duration-1000 ease-in-out ${
         sidebar ? 'left-56 w-10/12' : 'left-0 w-full'
       }`"
     >
@@ -107,9 +107,19 @@
                   <h1 class="ml-2">Twitter:</h1>
                 </div>
                 <input
-                  class="bg-cream focus:outline-none shadow-sm ml-4 rounded-md py-2 px-2 mt-2 w-1/4"
+                  class="bg-cream focus:outline-none shadow-sm ml-4 rounded-md py-2 px-2 mt-2 w-7/12 md:w-1/3"
                   placeholder="@twitter"
+                  v-model="profile.twitter_link"
                 />
+                <div class="ml-2 mt-2" @click.prevent="update">
+                  <span
+                    class="iconify"
+                    data-icon="radix-icons:update"
+                    style="color: blue"
+                    data-width="25"
+                    data-height="25"
+                  ></span>
+                </div>
               </div>
               <div class="my-2 flex items-center">
                 <div class="flex items-center">
@@ -117,22 +127,38 @@
                   <h1 class="ml-2">Facebook:</h1>
                 </div>
                 <input
-                  class="bg-cream focus:outline-none shadow-sm ml-4 rounded-md py-2 px-2 mt-2 w-1/4"
+                  class="bg-cream focus:outline-none shadow-sm ml-4 rounded-md py-2 px-2 mt-2 w-7/12 md:w-1/3"
                   placeholder="@facebook"
                 />
+                <div class="ml-2 mt-2" @click.prevent="update">
+                  <span
+                    class="iconify"
+                    data-icon="radix-icons:update"
+                    style="color: blue"
+                    data-width="25"
+                    data-height="25"
+                  ></span>
+                </div>
               </div>
               <div class="my-2 flex items-center">
                 <div class="flex items-center">
-                  <span
-                    class="iconify"
-                    data-icon="akar-icons:instagram-fill"
-                  ></span>
+                  <img src="@/assets/images/insta.png" alt="" class="h-4" />
                   <h1 class="ml-2">Instagram:</h1>
                 </div>
                 <input
-                  class="bg-cream focus:outline-none shadow-sm ml-4 rounded-md py-2 px-2 mt-2 w-1/4"
+                  class="bg-cream focus:outline-none shadow-sm ml-4 rounded-md py-2 px-2 mt-2 w-7/12 md:w-1/3"
                   placeholder="@instagram"
+                  v-model="profile.instagram_link"
                 />
+                <div class="ml-2 mt-2" @click.prevent="update">
+                  <span
+                    class="iconify"
+                    data-icon="radix-icons:update"
+                    style="color: blue"
+                    data-width="25"
+                    data-height="25"
+                  ></span>
+                </div>
               </div>
             </div>
           </div>
@@ -167,6 +193,7 @@ export default {
   methods: {
     ...mapActions({
       getProfile: "getProfile",
+      updateProfile: "updateProfile",
     }),
     toggleModal(profile) {
       this.editableProfile = profile;
@@ -176,10 +203,30 @@ export default {
       modal.classList.toggle("pointer-events-none");
       body.classList.toggle("modal-active");
     },
+    async update() {
+      try {
+        const payload = {
+          firstname: this.profile.firstname,
+          lastname: this.profile.lastname,
+          address_1: this.profile.address_1,
+          address_2: this.profile.address_2,
+          phone: this.profile.phone,
+          city: this.profile.city,
+          country: this.profile.country,
+          bio: this.profile.bio,
+          twitter_link: this.profile.twitter_link,
+          instagram_link: this.profile.instagram_link,
+        };
+        await this.updateProfile(payload);
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
   async created() {
     await this.getProfile();
     this.profile = JSON.parse(localStorage.getItem("profile"));
+    //console.log(this.profile);
   },
 };
 </script>

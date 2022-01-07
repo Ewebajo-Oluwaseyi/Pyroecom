@@ -40,7 +40,7 @@ import LoginInfo from "./Login Forms/LoginInfo.vue";
 import Bio from "./Login Forms/Bio.vue";
 //import AdditionalPhotos from "./Login Forms/AdditionalPhotos.vue";
 import Address from "./Login Forms/Address.vue";
-//import SocialMedia from "./Login Forms/SocialMedia.vue";
+import SocialMedia from "./Login Forms/SocialMedia.vue";
 //import Compensation from "./Login Forms/Compensation.vue";
 import OtherInfo from "./Login Forms/OtherInfo.vue";
 import Spinner from "@/components/Spinner";
@@ -58,6 +58,9 @@ export default {
         },
         {
           component: Bio,
+        },
+        {
+          component: SocialMedia,
         },
         {
           component: Address,
@@ -87,10 +90,10 @@ export default {
       }
       this.$root.$emit("Next");
     },
-    submit() {
+    async submit() {
       this.loading = true;
       this.$root.$emit("Submit");
-      this.postRegister();
+      await this.postRegister();
       if (this.getError) {
         this.error = this.getError;
       }

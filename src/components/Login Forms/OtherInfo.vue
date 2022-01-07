@@ -120,8 +120,6 @@ export default {
 
         const payload = {
           gender: gender,
-          twitter_link: "https://twitter.com",
-          instagram_link: "https://instagram.com",
           languages: Arrlanguages,
         };
         this.$store.commit("moreInfo", payload);

@@ -7,7 +7,7 @@
       @click="closeModal"
     ></div>
     <div
-      class="modal-container bg-white w-11/12 md:max-w-xl z-50 shadow-md rounded-md mt-4 mb-4"
+      class="modal-container absolute top-8 bg-white w-11/12 md:max-w-xl z-50 shadow-md rounded-md mb-4"
     >
       <div class="flex justify-between items-center px-6 py-2">
         <p class="text-xl font-bold text-blueDark">Edit Profile</p>
@@ -26,7 +26,7 @@
         </div>
       </div>
       <div class="px-6 py-2 my-4">
-        <form action="" class="flex flex-wrap gap-6">
+        <form action="" class="flex flex-wrap gap-0 md:gap-6">
           <div class="flex-grow">
             <label for="firstname">First Name</label><br />
             <input
@@ -122,6 +122,7 @@
               {{ error.country }}
             </p>
           </div>
+
           <div class="flex-grow w-full">
             <label for="bio">Bio</label><br />
             <textarea

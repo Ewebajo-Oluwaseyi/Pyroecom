@@ -198,6 +198,11 @@
             }`"
           >
             {{ question.answer }}
+            <span class="underline text-yellow-600">
+              <router-link :to="{ path: question.path }">{{
+                question.name
+              }}</router-link>
+            </span>
           </p>
         </div>
       </div>
@@ -309,11 +314,14 @@ export default {
         },
         {
           question: "What is influencer marketing?",
-          answer: "Get the meaning of influencer marketing online.",
+          answer:
+            "Influencer marketing is a form of social media marketing involving endorsements and product placement from influencers, people and organizations who have a purported expert level of knowledge or social influence in their field.",
         },
         {
           question: "How do I get started?",
-          answer: "Sign up here (link to redirect to the sign up page.",
+          answer: `Sign up here. `,
+          path: "/register",
+          name: "Register",
         },
         {
           question: "Can I be a student and an influencer?",

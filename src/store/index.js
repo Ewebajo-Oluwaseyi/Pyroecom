@@ -17,7 +17,8 @@ export default new Vuex.Store({
     next: false,
     error: "",
     msg: "",
-    notification: []
+    notification: [],
+    social: ""
   },
   mutations: {
     toggleSidebar: (state) => {
@@ -28,6 +29,9 @@ export default new Vuex.Store({
     },
     loginInfo: (state, payload) => {
       state.loginInfo = payload;
+    },
+    social: (state, payload) => {
+      state.social = payload;
     },
     bio: (state, payload) => {
       state.bio = payload
@@ -59,7 +63,6 @@ export default new Vuex.Store({
       await icyecomServices.login(payload).then(response => {
         commit("token", response.data.access_token);
         if(response.data.access_token) {
-          console.log(response.data.access_token)
           localStorage.setItem("jwt", response.data.access_token);
           router.push("/");
         }
@@ -69,13 +72,14 @@ export default new Vuex.Store({
       const {firstname, lastname, email, password, password_confirmation} = getters.loginInfo;
       const {bio} = getters.bio
       const {address_1, phone, city, country} = getters.address;
-      const {gender, twitter_link, instagram_link, languages} = getters.moreInfo;
-      await icyecomServices.register({firstname, lastname, email, password, password_confirmation, bio, address_1, phone, city, country, gender, twitter_link, instagram_link, languages}).then(response => {
-       
-        if (response.data.success === true) {
+      const {twitter_link, instagram_link} = getters.social;
+      const {gender, languages} = getters.moreInfo;
+      await icyecomServices.register({firstname, lastname, email, password, password_confirmation, bio, address_1, phone, city, country, gender, twitter_link, instagram_link, languages,}).then(response => {
+
+        if (response.status === 201) {
           dispatch("postlogin", {email, password})
-        } else {  
-         commit("error", response.data.data.email[0])
+        } else { 
+         commit("error", response.data.data.email[0]);
         }
       })
     },
@@ -138,6 +142,9 @@ export default new Vuex.Store({
     },
     notification(state) {
       return state.notification
+    },
+    social(state) {
+      return state.social
     }
   },
   modules: {},

@@ -7,7 +7,7 @@
           <div
             class="w-16 h-16 px-8 mx-auto md:mx-0 mb-6 md:mb-0 rounded-full bg-blueDark flex items-center justify-center"
           >
-            <h1 class="text-white text-3xl font-bold">7</h1>
+            <h1 class="text-white text-3xl font-bold">3</h1>
           </div>
           <div>
             <h1 class="text-4xl text-center md:text-left">
@@ -15,53 +15,67 @@
             </h1>
           </div>
         </div>
-        <div class="flex gap-5 mt-5">
-          <div
-            class="border-2 border-gray-400 border-dotted w-24 h-24 cursor-pointer"
-          >
-            <img
-              src="https://static.thenounproject.com/png/1156518-200.png"
-              alt=""
+        <form class="flex gap-5 mt-5">
+          <div class="flex-grow">
+            <label for="twitter" class="flex items-center"
+              ><span class="iconify" data-icon="logos:twitter"></span
+              ><span class="ml-2">Twitter</span> </label
+            ><br />
+            <input
+              type="text"
+              id="twitter"
+              v-model="register.twitter"
+              placeholder="Enter your twitter handler"
+              class="bg-cream focus:outline-none shadow-sm py-2 px-2 w-full"
             />
           </div>
-          <div
-            class="border-2 border-gray-400 border-dotted w-24 h-24 cursor-pointer"
-          >
-            <img
-              src="https://static.thenounproject.com/png/1156518-200.png"
-              alt=""
+          <div class="flex-grow">
+            <label for="instagram" class="flex items-center"
+              ><img src="@/assets/images/insta.png" alt="" class="h-4" /><span
+                class="ml-2"
+                >Instagram</span
+              > </label
+            ><br />
+            <input
+              type="text"
+              id="instagram"
+              v-model="register.instagram"
+              placeholder="Enter your instagram handler"
+              class="bg-cream focus:outline-none shadow-sm py-2 px-2 w-full"
             />
           </div>
-          <div
-            class="border-2 border-gray-400 border-dotted w-24 h-24 cursor-pointer"
-          >
-            <img
-              src="https://static.thenounproject.com/png/1156518-200.png"
-              alt=""
-            />
-          </div>
-          <div
-            class="border-2 border-gray-400 border-dotted w-24 h-24 cursor-pointer"
-          >
-            <img
-              src="https://static.thenounproject.com/png/1156518-200.png"
-              alt=""
-            />
-          </div>
-          <div
-            class="border-2 border-gray-400 border-dotted w-24 h-24 cursor-pointer"
-          >
-            <img
-              src="https://static.thenounproject.com/png/1156518-200.png"
-              alt=""
-            />
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      register: {
+        twitter: "",
+        instagram: "",
+      },
+    };
+  },
+  methods: {
+    submit() {
+      const twitter = this.register.twitter;
+      const instagram = this.register.instagram;
+      const payload = {
+        twitter_link: twitter,
+        instagram_link: instagram,
+      };
+
+      this.$store.commit("social", payload);
+    },
+  },
+  mounted: function mounted() {
+    this.$root.$on("Next", () => {
+      this.submit();
+    });
+  },
+};
 </script>

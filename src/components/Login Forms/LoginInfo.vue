@@ -226,23 +226,10 @@ export default {
         this.$store.commit("loginInfo", payload);
       }
     },
-    Prev() {
-      console.log(this.loginInfo);
-      this.register = {
-        firstName: this.loginInfo.firstname,
-        lastName: this.loginInfo.lastname,
-        email: this.loginInfo.email,
-        password: this.loginInfo.password,
-        confirmPassword: this.loginInfo.password_confirmation,
-      };
-    },
   },
   mounted: function mounted() {
     this.$root.$on("Next", () => {
       this.submit();
-    });
-    this.$root.$on("Previous", () => {
-      this.Prev();
     });
   },
 };
