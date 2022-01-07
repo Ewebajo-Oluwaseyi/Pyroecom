@@ -5,15 +5,6 @@
     >
       <h1 class="text-amber text-2xl font-bold">PYROECOM</h1>
 
-      <ul class="hidden md:flex">
-        <li
-          v-for="nav in navs"
-          :key="nav"
-          class="cursor-pointer mr-8 duration-200 hover:text-amber"
-        >
-          {{ nav }}
-        </li>
-      </ul>
       <div class="hidden md:block">
         <router-link to="/login">
           <button
@@ -45,18 +36,9 @@
     <!-- Mobile Nav -->
     <nav
       :class="` md:hidden text-white overflow-hidden transition-all duration-500 ${
-        nav ? 'h-60 ' : 'h-0'
+        nav ? 'h-30 ' : 'h-0'
       }`"
     >
-      <ul class="w-11/12 mx-auto">
-        <li
-          v-for="nav in navs"
-          :key="nav"
-          class="cursor-pointer mr-8 duration-200 my-4"
-        >
-          {{ nav }}
-        </li>
-      </ul>
       <div class="w-11/12 mx-auto">
         <router-link to="/login">
           <button
