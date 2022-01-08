@@ -36,24 +36,33 @@
       <h1 class="text-3xl text-center">
         Register and get free products or cash for your reviews!
       </h1>
-      <div class="text-center md:text-left md:w-5/12">
-        <div
-          v-for="benefit in benefits"
-          :key="benefit.title"
-          class="my-10 lg:flex gap-8"
-        >
-          <div>
-            <h1 class="text-2xl font-semibold my-4 lg:mt-0">
-              {{ benefit.title }}
-            </h1>
-            <p class="text-lg">{{ benefit.note }}</p>
+      <div class="flex flex-col-reverse md:flex-row">
+        <div class="text-center md:text-left md:w-5/12">
+          <div
+            v-for="benefit in benefits"
+            :key="benefit.title"
+            class="my-10 lg:flex gap-8"
+          >
+            <div>
+              <h1 class="text-2xl font-semibold my-4 lg:mt-0">
+                {{ benefit.title }}
+              </h1>
+              <p class="text-lg">{{ benefit.note }}</p>
+            </div>
           </div>
+          <router-link to="/registration"
+            ><button class="bg-amber text-xl px-6 py-2.5 mt-9 rounded-sm">
+              Register As An Influencer!
+            </button></router-link
+          >
         </div>
-        <router-link to="/registration"
-          ><button class="bg-amber text-xl px-6 py-2.5 mt-9 rounded-sm">
-            Register As An Influencer!
-          </button></router-link
-        >
+        <div class="flex mx-auto md:w-5/12 mt-3 md:mt-4">
+          <img
+            src="@/assets/images/registration2.png"
+            alt=""
+            class="w-9/12 md:w-11/12 md:h-4/6 md:mt-6 mx-auto"
+          />
+        </div>
       </div>
     </section>
   </div>
