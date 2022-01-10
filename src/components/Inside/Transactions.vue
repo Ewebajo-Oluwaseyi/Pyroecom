@@ -18,12 +18,16 @@
           <h1 class="text-gray-500 uppercase text-sm font-bold">
             Total Payouts
           </h1>
-          <h1 class="text-4xl font-bold text-blueMid">0</h1>
+          <h1 class="text-4xl font-bold text-blueMid">
+            {{ dashboardData.payouts }}
+          </h1>
         </div>
 
         <div>
           <h1 class="text-gray-500 uppercase text-sm font-bold">Withdrawal</h1>
-          <h1 class="text-4xl font-bold text-blueMid">0</h1>
+          <h1 class="text-4xl font-bold text-blueMid">
+            {{ dashboardData.withdrawal }}
+          </h1>
         </div>
       </div>
     </div>
@@ -31,5 +35,7 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["dashboardData"],
+};
 </script>

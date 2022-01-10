@@ -16,12 +16,16 @@
       <div class="flex justify-between w-11/12 mx-auto">
         <div>
           <h1 class="text-gray-500 uppercase text-sm font-bold">Verified</h1>
-          <h1 class="text-4xl font-bold text-blueMid">1</h1>
+          <h1 class="text-4xl font-bold text-blueMid">
+            {{ dashboardData.verified }}
+          </h1>
         </div>
 
         <div>
           <h1 class="text-gray-500 uppercase text-sm font-bold">Active</h1>
-          <h1 class="text-4xl font-bold text-blueMid">0</h1>
+          <h1 class="text-2xl font-bold text-blueMid">
+            {{ dashboardData.active }}
+          </h1>
         </div>
       </div>
     </div>
@@ -29,5 +33,7 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["dashboardData"],
+};
 </script>

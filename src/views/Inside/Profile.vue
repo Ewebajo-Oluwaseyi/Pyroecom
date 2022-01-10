@@ -129,6 +129,7 @@
                 <input
                   class="bg-cream focus:outline-none shadow-sm ml-4 rounded-md py-2 px-2 mt-2 w-7/12 md:w-1/3"
                   placeholder="@facebook"
+                  v-model="profile.facebook_link"
                 />
                 <div class="ml-2 mt-2" @click.prevent="update">
                   <span
@@ -216,7 +217,9 @@ export default {
           bio: this.profile.bio,
           twitter_link: this.profile.twitter_link,
           instagram_link: this.profile.instagram_link,
+          facebook_link: this.profile.facebook_link,
         };
+        console.log(payload);
         await this.updateProfile(payload);
       } catch (error) {
         console.log(error);

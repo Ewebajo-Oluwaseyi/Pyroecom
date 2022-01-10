@@ -8,7 +8,7 @@
       >
         <div class="text-center lg:text-left">
           <h1 class="text-3xl lg:text-5xl font-bold uppercase">
-            Team up with trusted influencers!
+            Team up with potential students
           </h1>
           <p class="font-bold text-xl mt-4">
             Real creators. Upfront rates. Fast results.
@@ -313,9 +313,9 @@ export default {
             "It supports all social media networks; Instagram, Facebook, Twitter, pinterest etc.",
         },
         {
-          question: "What is influencer marketing?",
+          question: "Why do we need Influencers",
           answer:
-            "Influencer marketing is a form of social media marketing involving endorsements and product placement from influencers, people and organizations who have a purported expert level of knowledge or social influence in their field.",
+            "These days, it's harder to reach your target audience especially when you don't have access to these audience. Influencers promote products and services to reach target audience and amplify brand awareness for our students.",
         },
         {
           question: "How do I get started?",

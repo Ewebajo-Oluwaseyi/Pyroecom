@@ -18,7 +18,8 @@ export default new Vuex.Store({
     error: "",
     msg: "",
     notification: [],
-    social: ""
+    social: "",
+    dashboardData: []
   },
   mutations: {
     toggleSidebar: (state) => {
@@ -56,6 +57,9 @@ export default new Vuex.Store({
     },
     notification: (state, payload) => {
       state.notification = payload
+    },
+    dashboardData: (state, payload) => {
+      state.dashboardData = payload
     }
   },
   actions: {
@@ -72,9 +76,9 @@ export default new Vuex.Store({
       const {firstname, lastname, email, password, password_confirmation} = getters.loginInfo;
       const {bio} = getters.bio
       const {address_1, phone, city, country} = getters.address;
-      const {twitter_link, instagram_link} = getters.social;
+      const {twitter_link, instagram_link, facebook_link} = getters.social;
       const {gender, languages} = getters.moreInfo;
-      await icyecomServices.register({firstname, lastname, email, password, password_confirmation, bio, address_1, phone, city, country, gender, twitter_link, instagram_link, languages,}).then(response => {
+      await icyecomServices.register({firstname, lastname, email, password, password_confirmation, bio, address_1, phone, city, country, gender, twitter_link, instagram_link,facebook_link, languages,}).then(response => {
 
         if (response.status === 201) {
           dispatch("postlogin", {email, password})
@@ -110,7 +114,13 @@ export default new Vuex.Store({
       await icyecomServices.noti({headers: {"Authorization": `Bearer ${token}`}}).then(response => {
         commit("notification", response.data.data)
       })
-    }
+    },
+    async getDashboardData({commit}) {
+      const token = localStorage.getItem("jwt");
+      await icyecomServices.dashboard({headers: {"Authorization": `Bearer ${token}`}}).then(response => {
+        commit("dashboardData", response.data.data)
+      })
+    },
   },
   getters: {
     getToken(state) {
@@ -145,6 +155,9 @@ export default new Vuex.Store({
     },
     social(state) {
       return state.social
+    },
+    dashboardData(state) {
+      return state.dashboardData
     }
   },
   modules: {},

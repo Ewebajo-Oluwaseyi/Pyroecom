@@ -9,8 +9,8 @@
     >
       <top-nav />
       <section class="flex items-center flex-wrap bg-white shadow-sm">
-        <Transactions class="w-80 flex-grow" />
-        <MarketPlace class="w-80 flex-grow" />
+        <Transactions :dashboardData="dashboardData" class="w-80 flex-grow" />
+        <MarketPlace :dashboardData="dashboardData" class="w-80 flex-grow" />
         <Earnings class="w-80 flex-grow" />
       </section>
 
@@ -46,7 +46,7 @@ import SocialAccounts from "@/components/Inside/SocialAccounts.vue";
 //import RecentTransactions from "@/components/Inside/RecentTransactions.vue";
 
 import Chat from "@/components/Inside/Chat.vue";
-
+import { mapGetters, mapActions } from "vuex";
 export default {
   components: {
     "top-nav": Nav,
@@ -59,9 +59,19 @@ export default {
     sidebar,
   },
   computed: {
+    ...mapGetters({
+      dashboardData: "dashboardData",
+    }),
     sidebar() {
       return this.$store.state.sidebar;
     },
+  },
+  methods: {
+    ...mapActions(["getDashboardData"]),
+  },
+  async created() {
+    await this.getDashboardData();
+    console.log(this.dashboardData);
   },
 };
 </script>

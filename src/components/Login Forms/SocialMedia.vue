@@ -15,7 +15,7 @@
             </h1>
           </div>
         </div>
-        <form class="flex gap-5 mt-5">
+        <form class="flex flex-wrap gap-5 mt-5">
           <div class="flex-grow">
             <label for="twitter" class="flex items-center"
               ><span class="iconify" data-icon="logos:twitter"></span
@@ -44,6 +44,19 @@
               class="bg-cream focus:outline-none shadow-sm py-2 px-2 w-full"
             />
           </div>
+          <div class="flex-grow">
+            <label for="facebook" class="flex items-center"
+              ><span class="iconify" data-icon="icon-park:facebook"></span
+              ><span class="ml-2">Facebook</span> </label
+            ><br />
+            <input
+              type="text"
+              id="facebook"
+              v-model="register.facebook"
+              placeholder="Enter your instagram handler"
+              class="bg-cream focus:outline-none shadow-sm py-2 px-2 w-full"
+            />
+          </div>
         </form>
       </div>
     </div>
@@ -57,6 +70,7 @@ export default {
       register: {
         twitter: "",
         instagram: "",
+        facebook: "",
       },
     };
   },
@@ -64,9 +78,11 @@ export default {
     submit() {
       const twitter = this.register.twitter;
       const instagram = this.register.instagram;
+      const facebook = this.register.facebook;
       const payload = {
         twitter_link: twitter,
         instagram_link: instagram,
+        facebook_link: facebook,
       };
 
       this.$store.commit("social", payload);

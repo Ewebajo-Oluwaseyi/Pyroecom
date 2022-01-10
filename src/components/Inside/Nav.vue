@@ -29,23 +29,33 @@
             class="absolute bottom-0 left-0 notification-group bg-white rounded-lg shadow-xl"
           >
             <div class="notifWrapper">
-              <h3 class="text-left text-gray-dark text-base">Notifications</h3>
-
               <div
-                class="notif"
-                v-for="notification in notifications"
-                :key="notification.id"
+                v-if="notifications.length == 0"
+                class="text-center text-gray-dark text-base"
               >
-                <span
-                  class="iconify notiimg"
-                  data-icon="bi:bell-fill"
-                  style="color: black"
-                ></span>
-                <div class="noti-details text-left ml-4">
-                  <h2 class="text-black">{{ notification.message }}</h2>
-                  <h5 class="text-black text-muted">
-                    {{ notification.time }}
-                  </h5>
+                No Notification
+              </div>
+              <div v-else>
+                <h3 class="text-left text-gray-dark text-base">
+                  Notifications
+                </h3>
+
+                <div
+                  class="notif"
+                  v-for="notification in notifications"
+                  :key="notification.id"
+                >
+                  <span
+                    class="iconify notiimg"
+                    data-icon="bi:bell-fill"
+                    style="color: black"
+                  ></span>
+                  <div class="noti-details text-left ml-4">
+                    <h2 class="text-black">{{ notification.message }}</h2>
+                    <h5 class="text-black text-muted">
+                      {{ notification.time }}
+                    </h5>
+                  </div>
                 </div>
               </div>
             </div>
@@ -57,11 +67,7 @@
           tabindex="-1"
           class="fixed inset-0 h-full w-full bg-black opacity-50 cursor-default"
         ></button>
-        <div
-          class="w-4 h-4 rounded-full bg-white flex items-center justify-center cursor-pointer mr-4"
-        >
-          <h1 class="text-black font-bold text-sm">?</h1>
-        </div>
+
         <h1 class="cursor-pointer mr-4">FAQs</h1>
         <h1 class="cursor-pointer mr-4" @click="logOut">Log Out</h1>
       </div>
@@ -125,6 +131,9 @@ export default {
       this.getNotification();
     },
   },
+  created() {
+    console.log(this.notifications);
+  },
 };
 </script>
 
@@ -171,7 +180,7 @@ export default {
 
 @media (min-width: 520px) {
   .notifWrapper {
-    width: 27rem;
+    width: 23rem;
     padding: 1.5rem 2rem;
   }
 }

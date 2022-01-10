@@ -16,6 +16,9 @@ class icyecomServices {
     noti(headers) {
         return axios.get("/notifications", headers)
     }
+    dashboard(headers) {
+        return axios.get("/dashboard", headers)
+    }
 }
 
 export default new icyecomServices();
