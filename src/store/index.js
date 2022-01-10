@@ -72,7 +72,7 @@ export default new Vuex.Store({
         }
       })
     },
-    async postRegister({dispatch, getters, commit}) {
+    async postRegister({getters, commit}) {
       const {firstname, lastname, email, password, password_confirmation} = getters.loginInfo;
       const {bio} = getters.bio
       const {address_1, phone, city, country} = getters.address;
@@ -81,7 +81,7 @@ export default new Vuex.Store({
       await icyecomServices.register({firstname, lastname, email, password, password_confirmation, bio, address_1, phone, city, country, gender, twitter_link, instagram_link,facebook_link, languages,}).then(response => {
 
         if (response.status === 201) {
-          dispatch("postlogin", {email, password})
+          router.push("/login");
         } else { 
          commit("error", response.data.data.email[0]);
         }

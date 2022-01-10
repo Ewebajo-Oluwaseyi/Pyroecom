@@ -4,9 +4,13 @@ import router from "./router";
 import store from "./store";
 import "./index.css";
 import VueCompositionAPI from '@vue/composition-api'
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 Vue.config.productionTip = false;
-Vue.use(VueCompositionAPI)
+Vue.use(VueCompositionAPI);
+Vue.use(VueSweetalert2);
+
 new Vue({
   router,
   store,

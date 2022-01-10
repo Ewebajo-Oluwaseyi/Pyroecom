@@ -7,7 +7,7 @@
           <div
             class="w-16 h-16 px-8 mx-auto md:mx-0 mb-6 md:mb-0 rounded-full bg-blueDark flex items-center justify-center"
           >
-            <h1 class="text-white text-3xl font-bold">4</h1>
+            <h1 class="text-white text-3xl font-bold">2</h1>
           </div>
           <div>
             <h1 class="text-4xl text-center md:text-left">Add a bio</h1>

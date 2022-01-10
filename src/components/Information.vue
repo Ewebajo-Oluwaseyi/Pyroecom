@@ -22,7 +22,7 @@
           <div class="Loading" v-if="loading">
             <Spinner />
           </div>
-          <div v-else>Login</div>
+          <div v-else>Register</div>
         </button>
         <p class="text-center text-red-500 text-sm">
           {{ error }}
@@ -94,7 +94,9 @@ export default {
       this.loading = true;
       this.$root.$emit("Submit");
       await this.postRegister();
-      if (this.getError) {
+      if (!this.getError) {
+        this.$swal("Check email for email verification");
+      } else {
         this.error = this.getError;
       }
       setTimeout(() => {
