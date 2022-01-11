@@ -71,7 +71,6 @@ export default {
   },
   async created() {
     await this.getDashboardData();
-    console.log(this.dashboardData);
   },
 };
 </script>

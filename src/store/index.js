@@ -17,6 +17,7 @@ export default new Vuex.Store({
     next: false,
     error: "",
     msg: "",
+    resendMsg: "",
     notification: [],
     social: "",
     dashboardData: []
@@ -55,6 +56,9 @@ export default new Vuex.Store({
     msg: (state, payload) =>{
       state.msg = payload;
     },
+    resendMsg: (state, payload)=> {
+      state.resendMsg = payload
+    },
     notification: (state, payload) => {
       state.notification = payload
     },
@@ -65,10 +69,15 @@ export default new Vuex.Store({
   actions: {
     async postlogin({commit}, payload) {
       await icyecomServices.login(payload).then(response => {
-        commit("token", response.data.access_token);
         if(response.data.access_token) {
-          localStorage.setItem("jwt", response.data.access_token);
-          router.push("/");
+          commit("token", response.data.access_token);
+          if(response.data.message !== null) {
+            commit("msg", response.data.message);
+          } else {
+            localStorage.setItem("jwt", response.data.access_token);
+            router.push("/");
+          }
+         
         }
       })
     },
@@ -121,6 +130,13 @@ export default new Vuex.Store({
         commit("dashboardData", response.data.data)
       })
     },
+    async resendEmail({commit, getters}) {
+      const token = getters.getToken;
+      await icyecomServices.resend({headers: {"Authorization": `Bearer ${token}`}}).then(response => {
+       commit("msg", "");
+       commit("resendMsg", response.data.message)
+      })
+    }
   },
   getters: {
     getToken(state) {
@@ -149,6 +165,9 @@ export default new Vuex.Store({
     },
     msg(state) {
       return state.msg
+    },
+    resendMsg(state) {
+      return state.resendMsg
     },
     notification(state) {
       return state.notification

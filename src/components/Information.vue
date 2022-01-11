@@ -2,7 +2,6 @@
   <div class="bg-cream py-8 h-screen">
     <div class="max-w-3xl mx-auto w-11/12">
       <component :is="pages[currentPage].component" />
-
       <div class="">
         <button v-if="currentPage !== 0" @click="previous" class="w-28 py-3">
           Back

@@ -41,7 +41,6 @@
     </div>
     <div class="bg-blueDark lg:w-1/2 px-4 text-white h-full flex items-center">
       <div class="max-w-lg mx-auto w-11/12">
-        <p class="text-center mb-2">{{ message }}</p>
         <h1 class="text-2xl font-bold">
           Log in to <span class="text-amber">Pyroecom</span>
         </h1>
@@ -86,6 +85,16 @@
           </button>
         </form>
         <p class="text-center text-red-500">{{ error.error }}</p>
+        <p class="text-center mb-2" v-if="message">
+          {{ message }} .
+          <span
+            class="text-red-500 underline cursor-pointer ml-2"
+            @click="resend"
+            >Resend email verication</span
+          >
+        </p>
+        <p v-if="resendMsg">{{ resendMsg }}</p>
+        <p />
         <p class="text-center my-8">
           Don't have an account?
           <router-link to="/register" class="text-amber">Register</router-link>
@@ -123,10 +132,11 @@ export default {
   computed: {
     ...mapGetters({
       message: "msg",
+      resendMsg: "resendMsg",
     }),
   },
   methods: {
-    ...mapActions(["postlogin"]),
+    ...mapActions(["postlogin", "resendEmail"]),
     async Userlogin() {
       if (this.login.email == "") {
         this.error.email = "email is required";
@@ -161,6 +171,9 @@ export default {
           }
         }
       }
+    },
+    resend() {
+      this.resendEmail();
     },
   },
 };

@@ -131,9 +131,6 @@ export default {
       this.getNotification();
     },
   },
-  created() {
-    console.log(this.notifications);
-  },
 };
 </script>
 
