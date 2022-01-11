@@ -19,8 +19,8 @@ class icyecomServices {
     dashboard(headers) {
         return axios.get("/dashboard", headers)
     }
-    resend(headers) {
-        return axios.post("/account/resend", headers)
+    resend(data) {
+        return axios.post("/account/resend", data)
     }
 }
 

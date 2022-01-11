@@ -93,7 +93,7 @@
             >Resend email verication</span
           >
         </p>
-        <p v-if="resendMsg">{{ resendMsg }}</p>
+        <p class="text-center" v-if="resendMsg">{{ resendMsg }}</p>
         <p />
         <p class="text-center my-8">
           Don't have an account?
@@ -160,6 +160,7 @@ export default {
             password,
           };
           await this.postlogin(payload);
+          this.$store.commit("loginInfo", payload);
           this.loading = false;
         } catch (err) {
           if (err) {

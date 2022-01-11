@@ -131,10 +131,13 @@ export default new Vuex.Store({
       })
     },
     async resendEmail({commit, getters}) {
-      const token = getters.getToken;
-      await icyecomServices.resend({headers: {"Authorization": `Bearer ${token}`}}).then(response => {
+      const {email} = getters.loginInfo;
+      await icyecomServices.resend({email}).then(response => {
        commit("msg", "");
        commit("resendMsg", response.data.message)
+       setTimeout(() => {
+        commit("resendMsg", "")
+      }, 2000);
       })
     }
   },
