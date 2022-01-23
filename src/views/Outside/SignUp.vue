@@ -79,11 +79,11 @@ export default {
       benefits: [
         {
           title: "Promote Yourself",
-          note: "Complete your profile so relevant brands can find you based on your experience and interests (think of it as a mashup of your resume and a dating profile).",
+          note: "Complete your profile so you can get to work with our students based on your experience and interests (think of it as a mashup of your resume and a dating profile).",
         },
         {
           title: "Get Compensated",
-          note: "Brands will reach out with offers of free products or cash. You can also apply to campaigns you qualify for in our Marketplace.",
+          note: "Students will reach out with offers to promote their website and products or cash. You can also apply to campaigns you qualify for in our Marketplace.",
         },
         {
           title: "Share Your Thoughts",
