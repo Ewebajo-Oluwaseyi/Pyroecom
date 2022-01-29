@@ -8,6 +8,23 @@
       }`"
     >
       <top-nav />
+      <div class="fixed top-5 right-36 m-6" v-if="!stripeId">
+        <Transition name="slide-fade">
+          <div
+            class="bg-red-200 text-red-900 rounded-lg shadow-md p-4 pr-10"
+            style="min-width: 240px"
+            v-if="open"
+          >
+            <button
+              class="opacity-75 cursor-pointer absolute top-0 right-0 py-2 px-3 hover:opacity-100"
+              @click="open = !open"
+            >
+              ×
+            </button>
+            <div class="flex items-center">Add stripe id to accept payment</div>
+          </div>
+        </Transition>
+      </div>
       <section class="flex items-center flex-wrap bg-white shadow-sm">
         <Transactions :dashboardData="dashboardData" class="w-80 flex-grow" />
         <MarketPlace :dashboardData="dashboardData" class="w-80 flex-grow" />
@@ -48,6 +65,11 @@ import SocialAccounts from "@/components/Inside/SocialAccounts.vue";
 import Chat from "@/components/Inside/Chat.vue";
 import { mapGetters, mapActions } from "vuex";
 export default {
+  data() {
+    return {
+      open: true,
+    };
+  },
   components: {
     "top-nav": Nav,
     Transactions,
@@ -61,16 +83,21 @@ export default {
   computed: {
     ...mapGetters({
       dashboardData: "dashboardData",
+      stripeId: "stripeId",
     }),
     sidebar() {
       return this.$store.state.sidebar;
     },
   },
   methods: {
-    ...mapActions(["getDashboardData"]),
+    ...mapActions({
+      getDashboardData: "getDashboardData",
+      getProfile: "getProfile",
+    }),
   },
   async created() {
     await this.getDashboardData();
+    await this.getProfile();
   },
 };
 </script>
@@ -78,5 +105,14 @@ export default {
 <style scope>
 .w-lg {
   width: 78%;
+}
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.4s;
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(400px);
+  opacity: 0;
 }
 </style>

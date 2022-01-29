@@ -20,7 +20,9 @@ export default new Vuex.Store({
     resendMsg: "",
     notification: [],
     social: "",
-    dashboardData: []
+    dashboardData: [],
+    stripeId: "",
+    payout: []
   },
   mutations: {
     toggleSidebar: (state) => {
@@ -64,6 +66,12 @@ export default new Vuex.Store({
     },
     dashboardData: (state, payload) => {
       state.dashboardData = payload
+    },
+    stripeId: (state, payload) => {
+      state.stripeId = payload
+    },
+    payout: (state, payload) => {
+      state.payout = payload;
     }
   },
   actions: {
@@ -103,6 +111,9 @@ export default new Vuex.Store({
           localStorage.setItem("profile", JSON.stringify(response.data));
         }
         commit("profile", response.data);
+        if (response.data.stripe_id) {
+          commit("stripeId", response.data.stripe_id)
+        }
       })
     },
     async updateProfile({commit}, payload) {
@@ -138,6 +149,13 @@ export default new Vuex.Store({
        setTimeout(() => {
         commit("resendMsg", "")
       }, 2000);
+      })
+    },
+    async getPayouts({commit}) {
+      const token = localStorage.getItem("jwt");
+      await icyecomServices.payout({headers: {"Authorization": `Bearer ${token}`}}).then(response => {
+        console.log(response.data.data)
+        commit("payout", response.data.data)
       })
     }
   },
@@ -180,6 +198,12 @@ export default new Vuex.Store({
     },
     dashboardData(state) {
       return state.dashboardData
+    },
+    stripeId(state) {
+      return state.stripeId
+    },
+    payout(state) {
+      return state.payout
     }
   },
   modules: {},

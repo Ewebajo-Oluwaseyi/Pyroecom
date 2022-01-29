@@ -123,6 +123,17 @@
             </p>
           </div>
 
+          <div class="flex-grow">
+            <label for="strip_id">Stripe ID</label><br />
+            <input
+              type="text"
+              id="strip_id"
+              v-model="editProfile.stripe_id"
+              placeholder="Enter your stripe id"
+              class="bg-cream focus:outline-none shadow-sm py-2 px-2 mt-2 w-full"
+            />
+          </div>
+
           <div class="flex-grow w-full">
             <label for="bio">Bio</label><br />
             <textarea
@@ -145,7 +156,7 @@
                 <div v-if="loading">
                   <Spinner />
                 </div>
-                <div v-else>Edit Post</div>
+                <div v-else>Edit Profile</div>
               </button>
             </div>
           </div>
@@ -239,6 +250,7 @@ export default {
             phone: this.editProfile.phone,
             city: this.editProfile.city,
             country: this.editProfile.country,
+            stripe_id: this.editProfile.stripe_id,
             bio: this.editProfile.bio,
           };
           await this.updateProfile(payload);

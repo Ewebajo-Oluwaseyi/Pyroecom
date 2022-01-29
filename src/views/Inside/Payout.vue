@@ -7,7 +7,7 @@
       }`"
     >
       <top-nav />
-      <section class="py-8 px-5 flex justify-center content-center">
+      <section class="py-8 px-8 flex justify-center content-center">
         <div class="w-11/12 xl:w-full bg-grey shadow-sm">
           <div
             class="flex justify-between content-center border px-6 py-4 text-gray-dark"
@@ -28,55 +28,70 @@
                     class="bg-gray-300 px-2 py-2 rounded-r-lg"
                     @click="openSearch = !openSearch"
                   >
-                    <span class="iconify" data-icon="fa-solid:search"></span>
+                    <span
+                      class="iconify text-amber"
+                      data-icon="fa-solid:search"
+                    ></span>
                   </div>
                 </div>
                 <div
                   @click="openSearch = !openSearch"
                   :class="`flex ${openSearch ? 'hidden' : 'block'}`"
                 >
-                  <span class="iconify" data-icon="fa-solid:search"></span>
+                  <span
+                    class="iconify text-amber"
+                    data-icon="fa-solid:search"
+                  ></span>
                 </div>
               </div>
               <div class="mx-2">
-                <span class="iconify" data-icon="mdi:filter"></span>
+                <span class="iconify text-amber" data-icon="mdi:filter"></span>
               </div>
             </div>
           </div>
           <table class="table-auto w-full boarder-collapse">
             <thead class="border"></thead>
-            <thead class="border bg-gray-200">
+            <thead class="border bg-amber">
               <tr>
                 <th class="border-b w-10 text-gray-dark"></th>
                 <th class="border-b px-2 py-2 w-10 text-gray-dark">Id</th>
-                <th class="border-b px-2 py-2 text-gray-dark">Student</th>
+                <th class="border-b px-2 py-2 text-gray-dark">Influencer Id</th>
                 <th class="border-b px-2 py-2 text-gray-dark">Amount($)</th>
-                <th class="border-b px-2 py-2 text-gray-dark">Withdrawal($)</th>
-                <th class="border-b px-2 py-2 text-gray-dark">Paid_Date</th>
+                <th class="border-b px-2 py-2 text-gray-dark">Description</th>
+                <th class="border-b px-2 py-2 text-gray-dark">Created At</th>
+                <th class="border-b px-2 py-2 text-gray-dark">Updated At</th>
               </tr>
             </thead>
             <tbody class="border">
-              <tr v-for="(table, index) in tables" :key="index">
-                <td class="border-b px-2 py-2 w-10 text-center text-gray-500">
+              <tr v-for="(payout, index) in payouts" :key="index">
+                <td class="border-b px-2 py-2 w-10 text-center text-amber">
                   <span class="iconify" data-icon="ep:arrow-right"></span>
                 </td>
                 <td class="border-b px-2 py-2 w-10 text-center">
                   {{ parseInt(index + 1) }}
                 </td>
                 <td class="border-b px-2 py-2 text-center">
-                  {{ table.student }}
+                  {{ payout.influencer_id }}
                 </td>
                 <td class="border-b px-2 py-2 text-center">
-                  {{ table.amount }}
+                  {{ payout.amount }}
                 </td>
                 <td class="border-b px-2 py-2 text-center">
-                  {{ table.withdrawal }}
+                  {{ payout.description }}
                 </td>
-                <td class="border-b px-2 py-2 text-center">{{ table.date }}</td>
+                <td class="border-b px-2 py-2 text-center">
+                  {{ payout.created_at | moment }}
+                </td>
+                <td class="border-b px-2 py-2 text-center">
+                  {{ payout.updated_at | moment }}
+                </td>
               </tr>
             </tbody>
           </table>
-          <div class="flex justify-end border px-6 py-2 text-gray-dark">
+          <div
+            class="flex justify-end border px-6 py-2 text-gray-dark"
+            v-if="pagination"
+          >
             <div>1-10 of 1</div>
             <div class="flex mt-1 mx-2 cursor-pointer">
               <span class="iconify" data-icon="ep:arrow-left"></span>
@@ -92,6 +107,8 @@
 <script>
 import sidebar from "@/components/Side bar/SideBar.vue";
 import Nav from "@/components/Inside/Nav.vue";
+import { mapGetters, mapActions } from "vuex";
+import moment from "moment";
 
 export default {
   components: {
@@ -100,6 +117,7 @@ export default {
   },
   data() {
     return {
+      pagination: false,
       openSearch: false,
       tables: [
         {
@@ -175,10 +193,26 @@ export default {
       ],
     };
   },
+  methods: {
+    ...mapActions({
+      getPayouts: "getPayouts",
+    }),
+  },
+  filters: {
+    moment: function (date) {
+      return moment(date).format("MMMM Do YYYY");
+    },
+  },
   computed: {
+    ...mapGetters({
+      payouts: "payout",
+    }),
     sidebar() {
       return this.$store.state.sidebar;
     },
+  },
+  async created() {
+    await this.getPayouts();
   },
 };
 </script>

@@ -7,6 +7,23 @@
       }`"
     >
       <top-nav />
+      <div class="fixed top-5 right-36 m-6" v-if="!stripeId">
+        <Transition name="slide-fade">
+          <div
+            class="bg-red-200 text-red-900 rounded-lg shadow-md p-4 pr-10"
+            style="min-width: 240px"
+            v-if="open"
+          >
+            <button
+              class="opacity-75 cursor-pointer absolute top-0 right-0 py-2 px-3 hover:opacity-100"
+              @click="open = !open"
+            >
+              ×
+            </button>
+            <div class="flex items-center">Add stripe id to accept payment</div>
+          </div>
+        </Transition>
+      </div>
       <div>
         <section class="py-8 px-5 bg-white flex justify-between">
           <div class="flex gap-5 items-center">
@@ -85,6 +102,19 @@
               <div class="my-2 flex items-center">
                 <h1>Country:</h1>
                 <p class="ml-4">{{ profile.country }}</p>
+              </div>
+              <div class="my-2 flex items-center">
+                <h1>Stripe ID:</h1>
+                <p class="ml-4" v-if="profile.stripe_id">
+                  {{ profile.stripe_id }}
+                </p>
+                <button
+                  class="ml-3 py-1 w-32 rounded-sm bg-amber text-white"
+                  @click="toggleModal(profile)"
+                  v-if="!profile.stripe_id"
+                >
+                  Add Stripe ID
+                </button>
               </div>
             </div>
           </div>
@@ -172,13 +202,14 @@
 <script>
 import sidebar from "@/components/Side bar/SideBar.vue";
 import Nav from "@/components/Inside/Nav.vue";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import editProfile from "@/components/Inside/EditProfile.vue";
 export default {
   data() {
     return {
       editableProfile: {},
       profile: [],
+      open: true,
     };
   },
   components: {
@@ -187,6 +218,9 @@ export default {
     editProfile,
   },
   computed: {
+    ...mapGetters({
+      stripeId: "stripeId",
+    }),
     sidebar() {
       return this.$store.state.sidebar;
     },
@@ -219,7 +253,7 @@ export default {
           instagram_link: this.profile.instagram_link,
           facebook_link: this.profile.facebook_link,
         };
-        console.log(payload);
+        //console.log(payload);
         await this.updateProfile(payload);
       } catch (error) {
         console.log(error);

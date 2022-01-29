@@ -22,6 +22,9 @@ class icyecomServices {
     resend(data) {
         return axios.post("/account/resend", data)
     }
+    payout(data) {
+        return axios.get("/payouts", data)
+    }
 }
 
 export default new icyecomServices();
