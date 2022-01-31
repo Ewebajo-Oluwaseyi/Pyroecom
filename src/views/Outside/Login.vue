@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen lg:flex">
     <div class="hidden lg:block p-8 flex-grow">
-      <h1 class="text-3xl text-center font-bold mb-6">Welcome to Pyroecom</h1>
+      <h1 class="text-3xl text-center font-bold mb-6">Welcome to Pyro</h1>
       <p class="text-center">
         A large warm-contact influencer network of real and willing people!
       </p>
@@ -42,7 +42,7 @@
     <div class="bg-blueDark lg:w-1/2 px-4 text-white h-full flex items-center">
       <div class="max-w-lg mx-auto w-11/12">
         <h1 class="text-2xl font-bold">
-          Log in to <span class="text-amber">Pyroecom</span>
+          Log in to <span class="text-amber">Pyro</span>
         </h1>
         <form action="">
           <input

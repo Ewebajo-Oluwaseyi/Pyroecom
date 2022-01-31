@@ -47,7 +47,7 @@
 
     <section class="max-w-7xl mx-auto py-32 w-11/12">
       <h1 class="text-blueDark text-4xl font-bold text-center">
-        What makes Pyroecom different?
+        What makes Pyro different?
       </h1>
       <div class="md:flex gap-6 mt-10 text-center">
         <div
@@ -211,7 +211,7 @@
     <footer class="bg-blueDark pt-12 text-cream">
       <div class="max-w-7xl mx-auto w-11/12 md:flex justify-between">
         <div class="mb-10">
-          <h1 class="text-amber text-2xl font-bold">PYROECOM</h1>
+          <h1 class="text-amber text-2xl font-bold">PYRO</h1>
           <p class="mt-6 leading-8">
             New York, United States Of America <br />
           </p>
@@ -235,9 +235,7 @@
           </ul>
         </div>
       </div>
-      <p class="text-center mt-6 opacity-60">
-        &copy; Pyroecom All rights reserved
-      </p>
+      <p class="text-center mt-6 opacity-60">&copy; Pyro All rights reserved</p>
     </footer>
   </div>
 </template>

@@ -3,7 +3,7 @@
     <nav
       class="w-11/12 mx-auto py-6 flex justify-between items-center text-white"
     >
-      <h1 class="text-amber text-2xl font-bold">PYROECOM</h1>
+      <h1 class="text-amber text-2xl font-bold">PYRO</h1>
 
       <div class="hidden md:block">
         <router-link to="/login">

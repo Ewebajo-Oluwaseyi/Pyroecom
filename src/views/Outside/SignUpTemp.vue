@@ -5,7 +5,7 @@
     >
       <div class="max-w-lg mx-auto w-11/12">
         <h1 class="text-2xl font-bold">
-          Register on <span class="text-amber">Pyroecom</span>
+          Register on <span class="text-amber">Pyro</span>
         </h1>
         <form action="">
           <input

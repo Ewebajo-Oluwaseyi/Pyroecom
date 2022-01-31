@@ -7,8 +7,8 @@
     <hr />
     <div class="flex justify-between items-center p-3">
       <div>
-        <h1 class="font-medium">Review the Pyroecom influence</h1>
-        <p class="text-gray-500 text-sm">Pyroecom</p>
+        <h1 class="font-medium">Review the Pyro influence</h1>
+        <p class="text-gray-500 text-sm">Pyro</p>
         <p class="text-gray-500 text-sm">Due Date: 12/31/2021</p>
       </div>
       <span

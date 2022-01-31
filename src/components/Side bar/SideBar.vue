@@ -5,7 +5,7 @@
     }`"
   >
     <div></div>
-    <h1 class="text-amber text-2xl font-bold text-center p-3">Pyroecom</h1>
+    <h1 class="text-amber text-2xl font-bold text-center p-3">Pyro</h1>
     <div class="ml-4 mt-4">
       <div class="w-12 h-12 ml-6">
         <img

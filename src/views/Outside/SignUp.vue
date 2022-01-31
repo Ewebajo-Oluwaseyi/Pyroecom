@@ -14,7 +14,7 @@
         </div>
 
         <div class="md:w-3/4 text-center md:text-left">
-          <h1 class="text-3xl font-bold">Register on Pyroecom, today!</h1>
+          <h1 class="text-3xl font-bold">Register on Pyro, today!</h1>
           <p class="mt-8">
             Hi, I'm here to help you set up a strong profile, so brands will
             want to collaborate with you. What is an influencer? Easy! A
