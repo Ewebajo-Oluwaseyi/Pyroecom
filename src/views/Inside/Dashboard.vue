@@ -83,7 +83,7 @@ export default {
   computed: {
     ...mapGetters({
       dashboardData: "dashboardData",
-      stripeId: "stripeId",
+      stripeId: "stripeId"
     }),
     sidebar() {
       return this.$store.state.sidebar;

@@ -19,7 +19,7 @@
             Total Payouts
           </h1>
           <h1 class="text-4xl font-bold text-blueMid">
-            {{ dashboardData.payouts }}
+            {{ payouts.length}}
           </h1>
         </div>
 
@@ -35,7 +35,18 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
   props: ["dashboardData"],
+    methods: {
+    ...mapActions({
+      getPayouts: "getPayouts",
+    }),
+  },
+  computed: {
+    ...mapGetters({
+      payouts: "payout"
+    })
+  },
 };
 </script>
